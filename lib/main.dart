@@ -32,12 +32,13 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Text('Hello World'),
       ),
-      drawer: Container(
-        color: Colors.white,
+      drawer: Drawer(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Este será o menu lateral'),
+            ListTile(
+              title: Text('Moradas do Sitio'),
+              subtitle: Text('Bloco: 3 Apartamento 34'),
+            ),
           ],
         ),
       ),
