@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'homepage/botaonavegacaoinferior.dart';
+import 'homepage/drawer.dart';
 
 void main() => runApp(MyApp());
 
@@ -32,17 +33,8 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Text('Hello World'),
       ),
-      drawer: Drawer(
-        child: Column(
-          children: [
-            ListTile(
-              title: Text('Moradas do Sitio'),
-              subtitle: Text('Bloco: 3 Apartamento 34'),
-            ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: Container(child: BotaoNavegacaoInferior()),
+      drawer: BotaoMenuEsquerdo(),
+      bottomNavigationBar: BotaoNavegacaoInferior(),
     );
   }
 }

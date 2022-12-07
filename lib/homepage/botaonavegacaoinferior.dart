@@ -43,32 +43,34 @@ class _BotaoNavegacaoInferiorState extends State<BotaoNavegacaoInferior> {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Inicial',
-            backgroundColor: Colors.blue),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.real_estate_agent),
-          label: 'Reservas',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.report_problem),
-          label: 'Ocorrecias',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.description),
-          label: 'Documentos',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.account_balance_wallet),
-          label: 'Prestação de Contas',
-        ),
-      ],
-      currentIndex: _selectedIndex,
-      selectedItemColor: Colors.amber[800],
-      onTap: _menuInferiorTapped,
+    return Container(
+      child: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Inicial',
+              backgroundColor: Colors.blue),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.real_estate_agent),
+            label: 'Reservas',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.report_problem),
+            label: 'Ocorrecias',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.description),
+            label: 'Documentos',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_balance_wallet),
+            label: 'Prestação de Contas',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        onTap: _menuInferiorTapped,
+      ),
     );
   }
 }
