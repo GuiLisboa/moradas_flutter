@@ -9,8 +9,10 @@ class BotaoNavegacaoInferior extends StatefulWidget {
 
 class _BotaoNavegacaoInferiorState extends State<BotaoNavegacaoInferior> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const TextStyle optionStyle = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
 
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
@@ -49,7 +51,7 @@ class _BotaoNavegacaoInferiorState extends State<BotaoNavegacaoInferior> {
           BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Inicial',
-              backgroundColor: Colors.blue),
+              backgroundColor: Colors.blueGrey),
           BottomNavigationBarItem(
             icon: Icon(Icons.real_estate_agent),
             label: 'Reservas',

@@ -8,8 +8,8 @@ Drawer BotaoMenuEsquerdo() {
           accountName: Text('Guilherme Lisboa Chaves'),
           accountEmail: Text('glc_chaves@hotmail.com'),
           currentAccountPicture: CircleAvatar(
-            backgroundImage: NetworkImage(
-                'https://www.imovelguide.com.br/images/condominio-edificio-bellatrix-ZsHgtn.jpg'),
+            backgroundImage:
+                AssetImage('assets/images/condominio-edificio-bellatrix.jpg'),
           ),
         ),
         ListTile(

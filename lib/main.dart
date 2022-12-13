@@ -28,10 +28,32 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Moradas'),
+        backgroundColor: Colors.blueGrey,
         centerTitle: true,
       ),
-      body: Center(
-        child: Text('Hello World'),
+      body: Container(
+        color: Colors.blueGrey[100],
+        child: Stack(
+          children: <Widget>[
+            Container(
+              child: Image.asset('assets/images/background-city.jpg'),
+            ),
+            Container(
+              child: Text(
+                'Moradas',
+                style: TextStyle(
+                  fontSize: 50,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Center(
+              child: Container(
+                  width: 150, child: Image.asset('assets/images/404-logo.jpg')),
+            )
+          ],
+        ),
       ),
       drawer: BotaoMenuEsquerdo(),
       bottomNavigationBar: BotaoNavegacaoInferior(),
