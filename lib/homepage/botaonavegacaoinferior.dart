@@ -49,9 +49,10 @@ class _BotaoNavegacaoInferiorState extends State<BotaoNavegacaoInferior> {
       child: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Inicial',
-              backgroundColor: Colors.blueGrey),
+            icon: Icon(Icons.home),
+            label: 'Inicial',
+            backgroundColor: Color(4284513675),
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.real_estate_agent),
             label: 'Reservas',

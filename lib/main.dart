@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'homepage/body.dart';
 import 'homepage/botaonavegacaoinferior.dart';
 import 'homepage/drawer.dart';
+import 'login/login_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,7 +14,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => LoginScreen(),
+        '/home': (context) => HomePage(),
+      },
     );
   }
 }
@@ -26,36 +32,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: BotaoMenuEsquerdo(),
       appBar: AppBar(
         title: Text('Moradas'),
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Color(0xFF607D8B),
         centerTitle: true,
       ),
-      body: Container(
-        color: Colors.blueGrey[100],
-        child: Stack(
-          children: <Widget>[
-            Container(
-              child: Image.asset('assets/images/background-city.jpg'),
-            ),
-            Container(
-              child: Text(
-                'Moradas',
-                style: TextStyle(
-                  fontSize: 50,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            Center(
-              child: Container(
-                  width: 150, child: Image.asset('assets/images/404-logo.jpg')),
-            )
-          ],
-        ),
-      ),
-      drawer: BotaoMenuEsquerdo(),
+      body: Body(),
       bottomNavigationBar: BotaoNavegacaoInferior(),
     );
   }
