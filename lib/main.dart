@@ -14,9 +14,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
+      initialRoute: '/login',
       routes: {
-        '/': (context) => LoginScreen(),
+        '/login': (context) => LoginScreen(),
         '/home': (context) => HomePage(),
       },
     );
@@ -31,15 +31,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: BotaoMenuEsquerdo(),
-      appBar: AppBar(
-        title: Text('Moradas'),
-        backgroundColor: Color(0xFF607D8B),
-        centerTitle: true,
+    return MaterialApp(
+      theme: ThemeData(
+          primaryColor: Color(4284513675),
+          scaffoldBackgroundColor: Color.fromARGB(255, 198, 204, 207)),
+      home: Scaffold(
+        drawer: BotaoMenuEsquerdo(),
+        appBar: AppBar(
+          title: Text('Moradas'),
+          backgroundColor: Color(0xFF607D8B),
+          centerTitle: true,
+        ),
+        body: Body(),
+        bottomNavigationBar: BotaoNavegacaoInferior(),
       ),
-      body: Body(),
-      bottomNavigationBar: BotaoNavegacaoInferior(),
     );
   }
 }
