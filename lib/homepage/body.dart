@@ -3,19 +3,26 @@ import 'package:flutter/material.dart';
 class Body extends StatelessWidget {
   const Body({super.key});
 
-  desenharColunaNoCartao(IconData iconeDaEsquerda) {
+  desenharColunaNoCartao(
+      IconData iconeDaEsquerda, String titulo, Color corDoIcone) {
     return Column(
       children: [
         Expanded(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Icon(
                 iconeDaEsquerda,
+                color: corDoIcone,
                 size: 30,
-                color: Colors.green,
               ),
-              Text("Reservas"),
+              Text(titulo,
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.5,
+                  )),
             ],
           ),
         ),
@@ -32,13 +39,20 @@ class Body extends StatelessWidget {
           children: [
             Expanded(
                 child: CartaoPadrao(
-              cartaoFilho: desenharColunaNoCartao(Icons.real_estate_agent),
+              cartaoFilho: desenharColunaNoCartao(
+                  Icons.real_estate_agent, 'Reservas', Colors.green),
             ))
           ],
         )),
         Expanded(
             child: Row(
-          children: [Expanded(child: CartaoPadrao())],
+          children: [
+            Expanded(
+                child: CartaoPadrao(
+              cartaoFilho: desenharColunaNoCartao(
+                  Icons.report_problem, 'Ocorrencias', Colors.redAccent),
+            ))
+          ],
         )),
         Expanded(
             child: Row(
