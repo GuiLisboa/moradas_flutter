@@ -40,6 +40,16 @@ class Body extends StatelessWidget {
             Expanded(
                 child: CartaoPadrao(
               cartaoFilho: desenharColunaNoCartao(
+                  Icons.notifications, 'Avisos', Colors.grey),
+            ))
+          ],
+        )),
+        Expanded(
+            child: Row(
+          children: [
+            Expanded(
+                child: CartaoPadrao(
+              cartaoFilho: desenharColunaNoCartao(
                   Icons.real_estate_agent, 'Reservas', Colors.green),
             ))
           ],
