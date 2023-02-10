@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Body extends StatelessWidget {
   const Body({super.key});
 
-  desenharColunaNoCartao(
+  desenharTituloCartao(
       IconData iconeDaEsquerda, String titulo, Color corDoIcone) {
     return Column(
       children: [
@@ -39,7 +39,7 @@ class Body extends StatelessWidget {
           children: [
             Expanded(
                 child: CartaoPadrao(
-              cartaoFilho: desenharColunaNoCartao(
+              cartaoFilho: desenharTituloCartao(
                   Icons.notifications, 'Avisos', Colors.grey),
             ))
           ],
@@ -49,7 +49,7 @@ class Body extends StatelessWidget {
           children: [
             Expanded(
                 child: CartaoPadrao(
-              cartaoFilho: desenharColunaNoCartao(
+              cartaoFilho: desenharTituloCartao(
                   Icons.real_estate_agent, 'Reservas', Colors.green),
             ))
           ],
@@ -59,14 +59,10 @@ class Body extends StatelessWidget {
           children: [
             Expanded(
                 child: CartaoPadrao(
-              cartaoFilho: desenharColunaNoCartao(
+              cartaoFilho: desenharTituloCartao(
                   Icons.report_problem, 'Ocorrencias', Colors.redAccent),
             ))
           ],
-        )),
-        Expanded(
-            child: Row(
-          children: [Expanded(child: CartaoPadrao())],
         )),
       ],
     );
