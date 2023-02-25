@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'homepage/body.dart';
+import 'package:moradas/reserve/bodyreservescreen.dart';
+import 'homepage/bodyhomepage.dart';
 import 'homepage/botaonavegacaoinferior.dart';
 import 'homepage/drawer.dart';
 import 'login/login_screen.dart';
+import 'reserve/bodyreservescreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => LoginScreen(),
         '/home': (context) => HomePage(),
-        '/reserve': (context) => LoginScreen(),
+        '/reserve': (context) => BodyReserveScreen(),
       },
     );
   }
@@ -43,7 +45,7 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Color(0xFF607D8B),
           centerTitle: true,
         ),
-        body: Body(),
+        body: BodyHomepage(),
         bottomNavigationBar: BotaoNavegacaoInferior(),
       ),
     );
