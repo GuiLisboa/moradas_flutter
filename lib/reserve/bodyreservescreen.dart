@@ -1,17 +1,86 @@
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:moradas/homepage/bodyhomepage.dart';
 import 'package:flutter/material.dart';
 
-class BodyReserveScreen extends StatefulWidget {
+class BodyReserveScreen extends StatelessWidget {
   const BodyReserveScreen({super.key});
 
-  @override
-  State<BodyReserveScreen> createState() => _BodyReserveScreenState();
-}
+  desenharTituloCartao(IconData iconeDaEsquerda, Color corDoIcone,
+      String titulo, String taxaUso, String capacidade) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  iconeDaEsquerda,
+                  color: corDoIcone,
+                  size: 30,
+                ),
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  titulo,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  taxaUso,
+                  style: TextStyle(fontSize: 18, color: Color(0xFF6CA8F1)),
+                ),
+                Text(
+                  capacidade,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Color(0xFF6CA8F1),
+                  ),
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                Icon(
+                  Icons.arrow_forward_ios,
+                  size: 30,
+                ),
+              ],
+            )
+          ],
+        ),
+      ],
+    );
+  }
 
-class _BodyReserveScreenState extends State<BodyReserveScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      children: [
+        Expanded(
+          child: CartaoPadrao(
+            cartaoFilho: desenharTituloCartao(
+                Icons.celebration,
+                Color(4284513675),
+                'Salão de Festas',
+                'Taxa de Uso: R\$ 100,00',
+                'Capacidade: 100 pessoas'),
+          ),
+        ),
+        Expanded(
+          child: CartaoPadrao(),
+        ),
+        Expanded(
+          child: CartaoPadrao(),
+        ),
+        Expanded(
+          child: CartaoPadrao(),
+        ),
+        Expanded(
+          child: CartaoPadrao(),
+        ),
+      ],
+    );
   }
 }

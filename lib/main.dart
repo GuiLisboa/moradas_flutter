@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Color(0xFF607D8B),
           centerTitle: true,
         ),
-        body: BodyHomepage(),
+        body: BodyReserveScreen(),
         bottomNavigationBar: BotaoNavegacaoInferior(),
       ),
     );
