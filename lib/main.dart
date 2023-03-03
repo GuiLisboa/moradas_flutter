@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:moradas/reserve/bodyreservescreen.dart';
-import 'homepage/bodyhomepage.dart';
-import 'homepage/botaonavegacaoinferior.dart';
-import 'homepage/drawer.dart';
-import 'login/login_screen.dart';
-import 'reserve/bodyreservescreen.dart';
+import 'features/homePage/home_page.dart';
+import 'features/login/login_screen.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,35 +17,9 @@ class MyApp extends StatelessWidget {
       initialRoute: '/login',
       routes: {
         '/login': (context) => LoginScreen(),
-        '/home': (context) => HomePage(),
-        '/reserve': (context) => BodyReserveScreen(),
+        '/home': (context) => const HomePage(),
+        '/reserve': (context) => const BodyReserveScreen(),
       },
-    );
-  }
-}
-
-class HomePage extends StatefulWidget {
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-          primaryColor: Color(4284513675),
-          scaffoldBackgroundColor: Color.fromARGB(255, 198, 204, 207)),
-      home: Scaffold(
-        drawer: BotaoMenuEsquerdo(),
-        appBar: AppBar(
-          title: Text('Moradas'),
-          backgroundColor: Color(0xFF607D8B),
-          centerTitle: true,
-        ),
-        body: BodyReserveScreen(),
-        bottomNavigationBar: BotaoNavegacaoInferior(),
-      ),
     );
   }
 }
