@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class BodyHomepage extends StatelessWidget {
-  const BodyHomepage({super.key});
+class Initialpage extends StatelessWidget {
+  const Initialpage({super.key});
 
   desenharTituloCartao(
       IconData iconeDaEsquerda, String titulo, Color corDoIcone) {

@@ -43,46 +43,6 @@ class _BotaoNavegacaoInferiorState extends State<BotaoNavegacaoInferior> {
     });
   }
 
-  static Widget retornarPagina(int index) {
-    switch (index) {
-      case 0:
-        return Text(
-          'Index 0: Inicial',
-          style: optionStyle,
-        );
-        break;
-      case 1:
-        return Text(
-          'Index 1: Reservas',
-          style: optionStyle,
-        );
-        break;
-      case 2:
-        return Text(
-          'Index 2: Ocorrencias',
-          style: optionStyle,
-        );
-        break;
-      case 3:
-        return Text(
-          'Index 3: Documentos',
-          style: optionStyle,
-        );
-        break;
-      case 4:
-        return Text(
-          'Index 4: Prestação de Contas',
-          style: optionStyle,
-        );
-        break;
-      default:
-        return Text(
-          'Index 0: Inicial',
-          style: optionStyle,
-        );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
