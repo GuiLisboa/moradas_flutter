@@ -38,11 +38,13 @@ class TitleCardReserveWidget extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 Text(
                   usageFee,
-                  style: const TextStyle(fontSize: 18, color: Color(0xFF6CA8F1)),
+                  style:
+                      const TextStyle(fontSize: 18, color: Color(0xFF6CA8F1)),
                 ),
                 Text(
                   capacity,
@@ -53,7 +55,7 @@ class TitleCardReserveWidget extends StatelessWidget {
                 ),
               ],
             ),
-            const Column(
+            Column(
               children: [
                 Icon(
                   Icons.arrow_forward_ios,

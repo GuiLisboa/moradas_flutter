@@ -6,7 +6,7 @@ class DrawerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Drawer(
+    return Drawer(
       child: Column(
         children: [
           UserAccountsDrawerHeader(
@@ -16,7 +16,8 @@ class DrawerWidget extends StatelessWidget {
             accountName: Text('Guilherme Lisboa Chaves'),
             accountEmail: Text('glc_chaves@hotmail.com'),
             currentAccountPicture: CircleAvatar(
-              backgroundImage: AssetImage('assets/images/condominio-edificio-bellatrix.jpg'),
+              backgroundImage:
+                  AssetImage('assets/images/condominio-edificio-bellatrix.jpg'),
             ),
           ),
           ListTile(

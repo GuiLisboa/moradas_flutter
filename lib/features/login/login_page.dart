@@ -146,7 +146,7 @@ class LoginPageState extends State<LoginPage> {
   }
 
   Widget _buildSignInWithText() {
-    return const Column(
+    return Column(
       children: <Widget>[
         Text(
           '- OR -',
@@ -261,12 +261,7 @@ class LoginPageState extends State<LoginPage> {
                       Color(0xFF478DE0),
                       Color(0xFF398AE5),
                     ],
-                    stops: [
-                      0.1,
-                      0.4,
-                      0.7,
-                      0.9
-                    ],
+                    stops: [0.1, 0.4, 0.7, 0.9],
                   ),
                 ),
               ),
