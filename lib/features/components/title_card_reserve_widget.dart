@@ -19,53 +19,58 @@ class TitleCardReserveWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(
-                  leftIcon,
-                  color: iconColor,
-                  size: 30,
-                ),
-              ],
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  usageFee,
-                  style:
-                      const TextStyle(fontSize: 18, color: Color(0xFF6CA8F1)),
-                ),
-                Text(
-                  capacity,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    color: Color(0xFF6CA8F1),
+    return Container(
+      margin: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10), color: Colors.white54),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Icon(
+                    leftIcon,
+                    color: iconColor,
+                    size: 30,
                   ),
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                Icon(
-                  Icons.arrow_forward_ios,
-                  size: 30,
-                ),
-              ],
-            )
-          ],
-        ),
-      ],
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    usageFee,
+                    style:
+                        const TextStyle(fontSize: 18, color: Color(0xFF6CA8F1)),
+                  ),
+                  Text(
+                    capacity,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: Color(0xFF6CA8F1),
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    size: 30,
+                  ),
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
