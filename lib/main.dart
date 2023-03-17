@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => const LoginPage(),
         '/home': (context) => const HomePage(),
-        // '/reserve': (context) => const BodyReserveScreen(),
       },
     );
   }

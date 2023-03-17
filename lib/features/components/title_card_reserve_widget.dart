@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:moradas/constants.dart';
 
 class TitleCardReserveWidget extends StatelessWidget {
   final IconData leftIcon;
@@ -47,25 +48,28 @@ class TitleCardReserveWidget extends StatelessWidget {
                   ),
                   Text(
                     usageFee,
-                    style:
-                        const TextStyle(fontSize: 18, color: Color(0xFF6CA8F1)),
+                    style: const TextStyle(
+                        fontSize: 18, color: Color(colorBlueSimple)),
                   ),
                   Text(
                     capacity,
                     style: const TextStyle(
                       fontSize: 18,
-                      color: Color(0xFF6CA8F1),
+                      color: Color(colorBlueSimple),
                     ),
                   ),
                 ],
               ),
-              Column(
-                children: [
-                  Icon(
-                    Icons.arrow_forward_ios,
-                    size: 30,
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 30,
+                    ),
+                  ],
+                ),
               )
             ],
           ),

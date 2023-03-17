@@ -17,6 +17,9 @@ class _HomePageState extends State<HomePage> {
   static const List<Widget> _widgetOptions = <Widget>[
     Initialpage(),
     ReservePage(),
+    const Text('Index 2: Ocorrências'),
+    const Text('Index 3: Documentos'),
+    const Text('Index 4: Prestação de Contas'),
   ];
 
   void _onItemTapped(int index) {
@@ -28,7 +31,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primaryColor: const Color(colorBlueSimple), scaffoldBackgroundColor: const Color.fromARGB(255, 198, 204, 207)),
+      theme: ThemeData(
+          primaryColor: const Color(colorBlueSimple),
+          scaffoldBackgroundColor: const Color.fromARGB(255, 198, 204, 207)),
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Moradas'),
@@ -41,11 +46,26 @@ class _HomePageState extends State<HomePage> {
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Início', backgroundColor: Color(colorBlueSimple)),
-            BottomNavigationBarItem(icon: Icon(Icons.real_estate_agent), label: 'Reservas', backgroundColor: Color(colorBlueSimple)),
-            BottomNavigationBarItem(icon: Icon(Icons.report_problem), label: 'Ocorrências', backgroundColor: Color(colorBlueSimple)),
-            BottomNavigationBarItem(icon: Icon(Icons.description), label: 'Documentos', backgroundColor: Color(colorBlueSimple)),
-            BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet), label: 'Prestação de Contas', backgroundColor: Color(colorBlueSimple)),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Início',
+                backgroundColor: Color(colorBlueSimple)),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.real_estate_agent),
+                label: 'Reservas',
+                backgroundColor: Color(colorBlueSimple)),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.report_problem),
+                label: 'Ocorrências',
+                backgroundColor: Color(colorBlueSimple)),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.description),
+                label: 'Documentos',
+                backgroundColor: Color(colorBlueSimple)),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.account_balance_wallet),
+                label: 'Prestação de Contas',
+                backgroundColor: Color(colorBlueSimple)),
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.amber[800],
