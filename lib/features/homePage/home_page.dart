@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
 import 'package:moradas/features/components/drawer_widget.dart';
 import 'package:moradas/features/reserve/reserve_page.dart';
+import 'package:moradas/features/ticket/ticket_page.dart';
 
 import '../homePage/initial_page.dart';
 
@@ -17,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   static const List<Widget> _widgetOptions = <Widget>[
     Initialpage(),
     ReservePage(),
-    const Text('Index 2: Ocorrências'),
+    TicketPage(),
     const Text('Index 3: Documentos'),
     const Text('Index 4: Prestação de Contas'),
   ];
