@@ -61,11 +61,7 @@ class _HomePageState extends State<HomePage> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.description),
                 label: 'Documentos',
-                backgroundColor: Color(colorBlueSimple)),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.account_balance_wallet),
-                label: 'Prestação de Contas',
-                backgroundColor: Color(colorBlueSimple)),
+                backgroundColor: Color(colorBlueSimple))
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.amber[800],

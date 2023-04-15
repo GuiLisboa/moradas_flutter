@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moradas/features/components/title_card_widget.dart';
+import 'package:moradas/features/components/title_card_initial_widget.dart';
 
 class Initialpage extends StatelessWidget {
   const Initialpage({super.key});
@@ -12,7 +12,7 @@ class Initialpage extends StatelessWidget {
             child: Row(
           children: [
             Expanded(
-              child: TitleCardWidget(
+              child: TitleCardInitialWidget(
                   leftIcon: Icons.notifications,
                   title: 'Avisos',
                   iconColor: Colors.grey),
@@ -23,7 +23,7 @@ class Initialpage extends StatelessWidget {
             child: Row(
           children: [
             Expanded(
-              child: TitleCardWidget(
+              child: TitleCardInitialWidget(
                   leftIcon: Icons.real_estate_agent,
                   title: 'Reservas',
                   iconColor: Colors.green),
@@ -34,7 +34,7 @@ class Initialpage extends StatelessWidget {
             child: Row(
           children: [
             Expanded(
-              child: TitleCardWidget(
+              child: TitleCardInitialWidget(
                   leftIcon: Icons.report_problem,
                   title: 'Ocorrencias',
                   iconColor: Colors.redAccent),
