@@ -45,6 +45,7 @@ class _HomePageState extends State<HomePage> {
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
         bottomNavigationBar: BottomNavigationBar(
+          //showUnselectedLabels: true,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 icon: Icon(Icons.home),
