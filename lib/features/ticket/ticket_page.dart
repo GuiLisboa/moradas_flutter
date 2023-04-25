@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
 import 'package:moradas/features/components/title_card_reserve_widget.dart';
+import 'package:moradas/features/components/title_card_ticket_widget.dart';
 
 class TicketPage extends StatefulWidget {
   const TicketPage({super.key});
@@ -61,12 +62,18 @@ class _TicketPageState extends State<TicketPage>
         ),
         ListView(
           children: <Widget>[
-            TitleCardReserveWidget(
-                leftIcon: Icons.pool,
+            TitleCardTicketWidget(
+                leftIcon: Icons.not_started,
                 iconColor: Color(colorBlueSimple),
-                title: 'Piscina',
-                usageFee: 'Taxa de Uso: R\$ 50,00',
-                capacity: 'Capacidade: 50 pessoas'),
+                title: 'Ocorrência 1547',
+                status: 'Status: Em aberto',
+                ticketdescription: 'Breve Descrição: Barulho após o horár...'),
+            TitleCardTicketWidget(
+                leftIcon: Icons.not_started,
+                iconColor: Color(colorBlueSimple),
+                title: 'Ocorrência 1991',
+                status: 'Status: Em Andamento',
+                ticketdescription: 'Breve Descrição: Toneira pingando no ...'),
           ],
         ),
       ]),
