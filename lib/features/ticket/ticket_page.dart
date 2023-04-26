@@ -58,7 +58,130 @@ class _TicketPageState extends State<TicketPage>
       ),
       body: TabBarView(controller: _controller, children: [
         Container(
-          child: Text('Ocorrências'),
+          child: Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(15),
+                child: SizedBox(
+                  child: Flex(
+                    direction: Axis.vertical,
+                    children: [
+                      TextFormField(
+                        controller: null,
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Selecione a data',
+                            fillColor: Colors.white,
+                            filled: true,
+                            suffixIcon: Icon(
+                              Icons.calendar_month,
+                            )),
+                        onEditingComplete: () {},
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(15),
+                child: SizedBox(
+                  child: Flex(
+                    direction: Axis.vertical,
+                    children: [
+                      TextFormField(
+                        controller: null,
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText:
+                                'Selecione a Unidade que deseja reportar',
+                            fillColor: Colors.white,
+                            filled: true,
+                            suffixIcon: Icon(
+                              Icons.home,
+                            )),
+                        onEditingComplete: () {},
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(15),
+                child: SizedBox(
+                  child: Flex(
+                    direction: Axis.vertical,
+                    children: [
+                      TextFormField(
+                        controller: null,
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Selecione o tipo de Ocorrência',
+                            fillColor: Colors.white,
+                            filled: true,
+                            suffixIcon: Icon(
+                              Icons.more,
+                            )),
+                        onEditingComplete: () {},
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(15),
+                child: SizedBox(
+                  child: Flex(
+                    direction: Axis.vertical,
+                    children: [
+                      TextFormField(
+                        controller: null,
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Descreva a Ocorrência',
+                            fillColor: Colors.white,
+                            filled: true,
+                            suffixIcon: Icon(
+                              Icons.description,
+                            )),
+                        onEditingComplete: () {},
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(15),
+                child: SizedBox(
+                  child: Flex(
+                    direction: Axis.vertical,
+                    children: [
+                      TextFormField(
+                        controller: null,
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Quem deseja notificar',
+                            fillColor: Colors.white,
+                            filled: true,
+                            suffixIcon: Icon(
+                              Icons.person,
+                            )),
+                        onEditingComplete: () {},
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  textStyle: TextStyle(fontSize: 24),
+                  shape: StadiumBorder(),
+                  backgroundColor: Colors.amber,
+                ),
+                child: Text('Criar Ocorrência'),
+                onPressed: () {},
+              ),
+            ],
+          ),
         ),
         ListView(
           children: <Widget>[
