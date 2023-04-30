@@ -137,7 +137,7 @@ class LoginPageState extends State<LoginPage> {
               borderRadius: BorderRadius.circular(15.0),
             ),
           ),
-          onPressed: () => Navigator.of(context).pushNamed('/home'),
+          onPressed: () => Navigator.of(context).popAndPushNamed('/home'),
           child: const Text(
             'Fazer Login',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),

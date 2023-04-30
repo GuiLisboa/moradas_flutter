@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moradas/features/admin/create_notice_page.dart';
 import 'package:moradas/features/components/title_card_initial_widget.dart';
 
 class Initialpage extends StatelessWidget {
@@ -6,42 +7,51 @@ class Initialpage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-            child: Row(
-          children: [
-            Expanded(
-              child: TitleCardInitialWidget(
-                  leftIcon: Icons.notifications,
-                  title: 'Avisos',
-                  iconColor: Colors.grey),
-            )
-          ],
-        )),
-        Expanded(
-            child: Row(
-          children: [
-            Expanded(
-              child: TitleCardInitialWidget(
-                  leftIcon: Icons.real_estate_agent,
-                  title: 'Reservas',
-                  iconColor: Colors.green),
-            )
-          ],
-        )),
-        Expanded(
-            child: Row(
-          children: [
-            Expanded(
-              child: TitleCardInitialWidget(
-                  leftIcon: Icons.report_problem,
-                  title: 'Ocorrencias',
-                  iconColor: Colors.redAccent),
-            )
-          ],
-        )),
-      ],
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+              child: Row(
+            children: [
+              Expanded(
+                child: TitleCardInitialWidget(
+                    leftIcon: Icons.notifications,
+                    title: 'Avisos',
+                    iconColor: Colors.grey),
+              )
+            ],
+          )),
+          Expanded(
+              child: Row(
+            children: [
+              Expanded(
+                child: TitleCardInitialWidget(
+                    leftIcon: Icons.real_estate_agent,
+                    title: 'Reservas',
+                    iconColor: Colors.green),
+              )
+            ],
+          )),
+          Expanded(
+              child: Row(
+            children: [
+              Expanded(
+                child: TitleCardInitialWidget(
+                    leftIcon: Icons.report_problem,
+                    title: 'Ocorrencias',
+                    iconColor: Colors.redAccent),
+              )
+            ],
+          )),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+          tooltip: 'Adicionar Aviso',
+          child: const Icon(Icons.add),
+          onPressed: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => CreateNoticePage()));
+          }),
     );
   }
 }

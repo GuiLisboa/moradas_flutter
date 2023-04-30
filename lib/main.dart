@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'features/admin/create_notice_page.dart';
 import 'features/homePage/home_page.dart';
 import 'features/login/login_page.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/login',
       routes: {
         '/login': (context) => const LoginPage(),
-        '/home': (context) => const HomePage(),
+        '/home': (context) => const HomePage()
       },
     );
   }
