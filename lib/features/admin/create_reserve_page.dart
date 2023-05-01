@@ -11,7 +11,109 @@ class CreateReservePage extends StatelessWidget {
         title: Text('Adicionar Áreas Comuns'),
         backgroundColor: Color(colorBlueSimple),
       ),
-      body: Text('CreateReservePage'),
+      body: Container(
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(15),
+              child: SizedBox(
+                child: Flex(
+                  direction: Axis.vertical,
+                  children: [
+                    TextFormField(
+                      controller: null,
+                      decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Título da Área Comum.',
+                          fillColor: Colors.white,
+                          filled: true,
+                          suffixIcon: Icon(
+                            Icons.description,
+                          )),
+                      onEditingComplete: () {},
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(15),
+              child: SizedBox(
+                child: Flex(
+                  direction: Axis.vertical,
+                  children: [
+                    TextFormField(
+                      controller: null,
+                      decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Taxa de Uso.',
+                          fillColor: Colors.white,
+                          filled: true,
+                          suffixIcon: Icon(
+                            Icons.attach_money,
+                          )),
+                      onEditingComplete: () {},
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(15),
+              child: SizedBox(
+                child: Flex(
+                  direction: Axis.vertical,
+                  children: [
+                    TextFormField(
+                      controller: null,
+                      decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Capacidade da Área Comum.',
+                          fillColor: Colors.white,
+                          filled: true,
+                          suffixIcon: Icon(
+                            Icons.emoji_people,
+                          )),
+                      onEditingComplete: () {},
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(15),
+              child: SizedBox(
+                child: Flex(
+                  direction: Axis.vertical,
+                  children: [
+                    TextFormField(
+                      controller: null,
+                      decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Escolha um Ícone.',
+                          fillColor: Colors.white,
+                          filled: true,
+                          suffixIcon: Icon(
+                            Icons.add_reaction,
+                          )),
+                      onEditingComplete: () {},
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                textStyle: TextStyle(fontSize: 24),
+                shape: StadiumBorder(),
+                backgroundColor: Colors.amber,
+              ),
+              child: Text('Criar Área Comum'),
+              onPressed: () {},
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
