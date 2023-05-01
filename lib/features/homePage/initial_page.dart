@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/features/admin/create_notice_page.dart';
+import 'package:moradas/features/admin/create_user_page.dart';
+import 'package:moradas/features/admin/user_page.dart';
 import 'package:moradas/features/components/title_card_initial_widget.dart';
 
 class Initialpage extends StatelessWidget {
@@ -49,8 +51,8 @@ class Initialpage extends StatelessWidget {
           tooltip: 'Adicionar Aviso',
           child: const Icon(Icons.add),
           onPressed: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => CreateNoticePage()));
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => UserPage()));
           }),
     );
   }
