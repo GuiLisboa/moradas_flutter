@@ -51,8 +51,8 @@ class Initialpage extends StatelessWidget {
           tooltip: 'Adicionar Aviso',
           child: const Icon(Icons.add),
           onPressed: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => UserPage()));
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => CreateNoticePage()));
           }),
     );
   }

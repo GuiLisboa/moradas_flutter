@@ -34,7 +34,14 @@ class UserPage extends StatelessWidget {
                 name: 'Francisca Lisboa Chaves',
                 phone: 'Telefone: ' + '(41) 98000-0000',
                 tower: 'Torre: ' + '2A',
-                apartment: 'Apartamento: ' + '443')
+                apartment: 'Apartamento: ' + '443'),
+            TitleCardUserWidget(
+                leftIcon: Icons.people_alt,
+                iconColor: Color(colorBlueSimple),
+                name: 'Celso Lisboa Chaves',
+                phone: 'Telefone: ' + '(41) 98000-0000',
+                tower: 'Torre: ' + '2B',
+                apartment: 'Apartamento: ' + '431'),
           ],
         ));
   }
