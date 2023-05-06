@@ -24,7 +24,7 @@ class UserPage extends StatelessWidget {
             TitleCardUserWidget(
                 leftIcon: Icons.people_alt,
                 iconColor: Color(colorBlueSimple),
-                name: 'Ana Carolina Sanchez',
+                name: 'Ana Carolina Simião',
                 phone: 'Telefone: ' + '(41) 98000-000',
                 tower: 'Torre: ' + '1',
                 apartment: 'Apartamento: ' + '14'),
