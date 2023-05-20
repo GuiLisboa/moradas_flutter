@@ -48,28 +48,6 @@ class CreateUserPage extends StatelessWidget {
                         controller: null,
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
-                            labelText: 'Confirmação de senha',
-                            fillColor: Colors.white,
-                            filled: true,
-                            suffixIcon: Icon(
-                              Icons.lock,
-                            )),
-                        onEditingComplete: () {},
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(15),
-                child: SizedBox(
-                  child: Flex(
-                    direction: Axis.vertical,
-                    children: [
-                      TextFormField(
-                        controller: null,
-                        decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
                             labelText: 'Telefone',
                             fillColor: Colors.white,
                             filled: true,
