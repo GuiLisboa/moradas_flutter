@@ -35,15 +35,6 @@ class DocumentPage extends StatelessWidget {
               documentdescription: 'Manual para regras do uso ...'),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        tooltip: 'Adicionar Documento',
-        child: const Icon(Icons.add),
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => CreateDocumentsPage()),
-          );
-        },
-      ),
     );
   }
 }

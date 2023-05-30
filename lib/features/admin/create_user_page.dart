@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
 
+import '../../models/user.dart';
+
 class CreateUserPage extends StatelessWidget {
-  const CreateUserPage({super.key});
+  final _user = [
+    User(
+      fullName: 'Guilherme Lisboa Chaves',
+      cpf: '123.456.789-00',
+      email: 'glc_chaves@hotmail.com',
+      phone: '41 985053488',
+      tower: '1',
+      apartment: '14',
+      password: '123456',
+      createdOn: DateTime.now(),
+    ),
+  ];
+
+  CreateUserPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +47,28 @@ class CreateUserPage extends StatelessWidget {
                             Icons.person,
                           ),
                         ),
+                        onEditingComplete: () {},
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(15),
+                child: SizedBox(
+                  child: Flex(
+                    direction: Axis.vertical,
+                    children: [
+                      TextFormField(
+                        controller: null,
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'CPF',
+                            fillColor: Colors.white,
+                            filled: true,
+                            suffixIcon: Icon(
+                              Icons.badge,
+                            )),
                         onEditingComplete: () {},
                       ),
                     ],

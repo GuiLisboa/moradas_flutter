@@ -150,13 +150,6 @@ class _ReservePageState extends State<ReservePage>
           ],
         ),
       ]),
-      floatingActionButton: FloatingActionButton(
-          tooltip: 'Adicionar Aviso',
-          child: const Icon(Icons.add),
-          onPressed: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => CreateReservePage()));
-          }),
     );
   }
 }

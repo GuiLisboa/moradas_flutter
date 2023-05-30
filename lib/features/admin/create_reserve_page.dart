@@ -102,15 +102,6 @@ class CreateReservePage extends StatelessWidget {
                 ),
               ),
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                textStyle: TextStyle(fontSize: 24),
-                shape: StadiumBorder(),
-                backgroundColor: Colors.amber,
-              ),
-              child: Text('Criar Área Comum'),
-              onPressed: () {},
-            ),
           ],
         ),
       ),

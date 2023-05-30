@@ -92,29 +92,6 @@ class _TicketPageState extends State<TicketPage>
                         controller: null,
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
-                            labelText:
-                                'Selecione a Unidade que deseja reportar',
-                            fillColor: Colors.white,
-                            filled: true,
-                            suffixIcon: Icon(
-                              Icons.home,
-                            )),
-                        onEditingComplete: () {},
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(15),
-                child: SizedBox(
-                  child: Flex(
-                    direction: Axis.vertical,
-                    children: [
-                      TextFormField(
-                        controller: null,
-                        decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
                             labelText: 'Selecione o tipo de Ocorrência',
                             fillColor: Colors.white,
                             filled: true,
@@ -142,6 +119,29 @@ class _TicketPageState extends State<TicketPage>
                             filled: true,
                             suffixIcon: Icon(
                               Icons.description,
+                            )),
+                        onEditingComplete: () {},
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(15),
+                child: SizedBox(
+                  child: Flex(
+                    direction: Axis.vertical,
+                    children: [
+                      TextFormField(
+                        controller: null,
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText:
+                                'Selecione a Unidade que deseja reportar',
+                            fillColor: Colors.white,
+                            filled: true,
+                            suffixIcon: Icon(
+                              Icons.home,
                             )),
                         onEditingComplete: () {},
                       ),
