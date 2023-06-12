@@ -4,7 +4,7 @@ import 'package:moradas/features/admin/create_documents_page.dart';
 import 'package:moradas/features/admin/create_notice_page.dart';
 import 'package:moradas/features/admin/create_reserve_page.dart';
 import 'package:moradas/features/admin/create_user_page.dart';
-import 'package:moradas/features/admin/user_page.dart';
+import 'package:moradas/features/admin/list_user_page.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});

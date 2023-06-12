@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moradas/models/user.dart';
+import 'package:moradas/models/user_model.dart';
 
 class Ticket {
   final IconData leftIcon;

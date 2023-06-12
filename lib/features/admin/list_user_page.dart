@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
-import 'package:moradas/features/components/title_card_user_widget.dart';
+import 'package:moradas/features/components/title_card_list_user_widget.dart';
 
 class UserPage extends StatelessWidget {
   const UserPage({super.key});

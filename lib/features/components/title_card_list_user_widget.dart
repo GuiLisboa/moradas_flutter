@@ -55,16 +55,12 @@ class TitleCardUserWidget extends StatelessWidget {
                   Text(
                     tower,
                     style: const TextStyle(
-                      fontSize: 18,
-                      color: Color(colorBlueSimple),
-                    ),
+                        fontSize: 18, color: Color(colorBlueSimple)),
                   ),
                   Text(
                     apartment.toString(),
                     style: const TextStyle(
-                      fontSize: 18,
-                      color: Color(colorBlueSimple),
-                    ),
+                        fontSize: 18, color: Color(colorBlueSimple)),
                   ),
                 ],
               ),
