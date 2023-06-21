@@ -11,8 +11,8 @@ class TitleCardUserWidget extends StatelessWidget {
 
   const TitleCardUserWidget({
     super.key,
-    required this.leftIcon,
-    required this.iconColor,
+    this.leftIcon = Icons.people_alt,
+    this.iconColor = const Color(colorBlueSimple),
     required this.name,
     required this.phone,
     required this.tower,
@@ -48,17 +48,17 @@ class TitleCardUserWidget extends StatelessWidget {
                         fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    phone,
+                    'Telefone: $phone',
                     style: const TextStyle(
                         fontSize: 18, color: Color(colorBlueSimple)),
                   ),
                   Text(
-                    tower,
+                    'Torre: $tower',
                     style: const TextStyle(
                         fontSize: 18, color: Color(colorBlueSimple)),
                   ),
                   Text(
-                    apartment.toString(),
+                    'Apartamento: $apartment',
                     style: const TextStyle(
                         fontSize: 18, color: Color(colorBlueSimple)),
                   ),

@@ -32,8 +32,8 @@ class User {
     apartment = json['apartment'];
     password = json['password'];
     //createdOn = json['createdOn'];
-    isAdmin = json['isAdmin'];
-    isActive = json['isActive'];
+    // isAdmin = json['isAdmin'] ?? true;
+    // isActive = json['isActive'] ?? true;
   }
 
   Map<String, dynamic> toJson() {
@@ -46,8 +46,8 @@ class User {
     data['apartment'] = apartment;
     data['password'] = password;
     // data['createdOn'] = createdOn;
-    data['isAdmin'] = isAdmin;
-    data['isActive'] = isActive;
+    // data['isAdmin'] = isAdmin;
+    // data['isActive'] = isActive;
     return data;
   }
 }
