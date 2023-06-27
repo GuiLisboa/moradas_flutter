@@ -1,4 +1,5 @@
 class User {
+  int? idMorador;
   late String? fullName;
   late String? cpf;
   late String? phone;
@@ -11,6 +12,7 @@ class User {
   bool? isActive;
 
   User({
+    this.idMorador = 0,
     this.fullName,
     this.cpf,
     this.phone,
@@ -24,6 +26,7 @@ class User {
   });
 
   User.fromJson(Map<String, dynamic> json) {
+    idMorador = json['idMorador'];
     fullName = json['fullName'];
     cpf = json['cpf'];
     phone = json['phone'];
@@ -38,6 +41,7 @@ class User {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['idMorador'] = idMorador!.toInt();
     data['fullName'] = fullName;
     data['cpf'] = cpf;
     data['phone'] = phone;

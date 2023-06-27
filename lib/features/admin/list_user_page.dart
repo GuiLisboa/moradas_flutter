@@ -3,6 +3,7 @@ import 'package:moradas/constants.dart';
 import 'package:moradas/features/components/title_card_list_user_widget.dart';
 
 import '../../models/user_model.dart';
+import '../components/title_card_list_user_widget2.dart';
 import '../services/user_service.dart';
 
 class UserPage extends StatefulWidget {
@@ -39,34 +40,13 @@ class _UserPageState extends State<UserPage> {
         body: ListView.builder(
           itemCount: users.length,
           itemBuilder: (context, index) {
-            return TitleCardUserWidget(
+            return TitleCardUserWidget2(
                 name: users[index].fullName!,
                 phone: users[index].phone!,
                 tower: users[index].tower!,
-                apartment: users[index].apartment!);
+                apartment: users[index].apartment!,
+                idMorador: users[index].idMorador!.toString());
           },
-          // children: [
-          //   TitleCardUserWidget(
-          //       name: 'Guilherme Lisboa Chaves',
-          //       phone: '(41) 98505-3488',
-          //       tower: '1',
-          //       apartment: '14'),
-          //   TitleCardUserWidget(
-          //       name: 'Ana Carolina Simião',
-          //       phone: 'Telefone: ' + '(41) 98000-000',
-          //       tower: 'Torre: ' + '1',
-          //       apartment: '14'),
-          //   TitleCardUserWidget(
-          //       name: 'Francisca Lisboa Chaves',
-          //       phone: '(41) 98000-0000',
-          //       tower: '2A',
-          //       apartment: '443'),
-          //   TitleCardUserWidget(
-          //       name: 'Celso Lisboa Chaves',
-          //       phone: '(41) 98000-0000',
-          //       tower: '2B',
-          //       apartment: '431'),
-          // ],
         ));
   }
 }

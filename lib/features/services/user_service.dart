@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -71,6 +70,24 @@ class UserService {
     } catch (e) {
       print(e);
       return [];
+    }
+  }
+
+  Future deleteById(String id) async {
+    try {
+      var url = '$API/user/deleteById/$id';
+      await _dio.delete(url);
+
+      Fluttertoast.showToast(
+          msg: "Usuário excluido com sucesso!",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 3,
+          backgroundColor: Colors.green[200],
+          textColor: Colors.green[900],
+          fontSize: 26.0);
+    } catch (e) {
+      print(e);
     }
   }
 }

@@ -1,8 +1,9 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:moradas/constants.dart';
-import 'package:moradas/features/services/user_service.dart';
 
+import 'package:moradas/features/services/user_service.dart';
 import '../../models/user_model.dart';
 
 class CreateUserPage extends StatefulWidget {
@@ -81,7 +82,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
                           keyboardType: TextInputType.number,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly,
-                            //CpfInputFormatter(),
+                            CpfInputFormatter(),
                           ],
                           decoration: const InputDecoration(
                               border: OutlineInputBorder(),
@@ -93,7 +94,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
                               )),
                           validator: (val) {
                             if (val!.isEmpty) return 'Campo obrigatório';
-                            if (val.length < 11) return 'CPF inválido';
+                            if (val.length < 14) return 'CPF inválido';
                             return null;
                           },
                           onChanged: (text) {
@@ -115,7 +116,8 @@ class _CreateUserPageState extends State<CreateUserPage> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           keyboardType: TextInputType.number,
                           inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
+                            FilteringTextInputFormatter.digitsOnly,
+                            TelefoneInputFormatter()
                           ],
                           decoration: const InputDecoration(
                               border: OutlineInputBorder(),
@@ -127,7 +129,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
                               )),
                           validator: (val) {
                             if (val!.isEmpty) return 'Campo obrigatório';
-                            if (val.length < 11) return 'Telefone inválido';
+                            if (val.length < 15) return 'Telefone inválido';
                             return null;
                           },
                           onChanged: (text) {
