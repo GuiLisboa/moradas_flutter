@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:moradas/features/services/user_service.dart';
+import 'package:provider/provider.dart';
 
 import 'features/admin/create_notice_page.dart';
 import 'features/homePage/home_page.dart';
@@ -11,16 +13,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Moradas',
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<UserService>(
+          create: (context) => UserService(),
+        )
+      ],
+      child: MaterialApp(
+        title: 'Moradas',
+        theme: ThemeData(
+          primarySwatch: Colors.blueGrey,
+        ),
+        initialRoute: '/login',
+        routes: {
+          '/login': (context) => const LoginPage(),
+          '/home': (context) => const HomePage()
+        },
       ),
-      initialRoute: '/login',
-      routes: {
-        '/login': (context) => const LoginPage(),
-        '/home': (context) => const HomePage()
-      },
     );
   }
 }

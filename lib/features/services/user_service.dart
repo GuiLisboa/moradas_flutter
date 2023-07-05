@@ -5,7 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../../constants.dart';
 import '../../models/user_model.dart';
 
-class UserService {
+class UserService extends ChangeNotifier {
   late FToast fToast;
 
   final Dio _dio = Dio(
@@ -77,6 +77,7 @@ class UserService {
     try {
       var url = '$API/user/deleteById/$id';
       await _dio.delete(url);
+      notifyListeners();
 
       Fluttertoast.showToast(
           msg: "Usuário excluido com sucesso!",
@@ -86,6 +87,7 @@ class UserService {
           backgroundColor: Colors.green[200],
           textColor: Colors.green[900],
           fontSize: 26.0);
+      notifyListeners();
     } catch (e) {
       print(e);
     }

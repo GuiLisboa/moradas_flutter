@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
+import 'package:moradas/features/admin/list_user_page.dart';
 import 'package:moradas/features/services/user_service.dart';
-import 'package:moradas/models/user_model.dart';
 
 class TitleCardUserWidget2 extends StatelessWidget {
   final IconData leftIcon;
@@ -80,10 +80,6 @@ class TitleCardUserWidget2 extends StatelessWidget {
             ),
           ],
         ),
-        // trailing:
-        //     Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        //   Icon(Icons.arrow_forward_ios, color: iconColor, size: 30),
-        // ]),
         trailing: PopupMenuButton(
             color: Color(colorBlueSimple),
             icon: Icon(Icons.more_vert, color: iconColor, size: 30),
@@ -180,7 +176,7 @@ class TitleCardUserWidget2 extends StatelessWidget {
                             TextButton(
                               onPressed: () {
                                 UserService().deleteById(idMorador);
-                                Navigator.pop(context);
+                                Navigator.pop(context, 'Sim');
                               },
                               child: const Text('Sim'),
                             ),

@@ -35,7 +35,7 @@ class DrawerWidget extends StatelessWidget {
               title: Text('Usuários do Sistema'),
               onTap: () {
                 Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => UserPage()),
+                  MaterialPageRoute(builder: (context) => ListUserPage()),
                 );
               }),
           ListTile(

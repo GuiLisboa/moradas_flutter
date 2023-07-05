@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
-import 'package:moradas/features/components/title_card_list_user_widget.dart';
+import 'package:provider/provider.dart';
+import '../components/title_card_list_user_widget2.dart';
 
 import '../../models/user_model.dart';
-import '../components/title_card_list_user_widget2.dart';
 import '../services/user_service.dart';
 
-class UserPage extends StatefulWidget {
-  const UserPage({super.key});
+class ListUserPage extends StatefulWidget {
+  const ListUserPage({super.key});
 
   @override
-  State<UserPage> createState() => _UserPageState();
+  State<ListUserPage> createState() => _ListUserPageState();
 }
 
-class _UserPageState extends State<UserPage> {
+class _ListUserPageState extends State<ListUserPage> {
   final userService = new UserService();
   List<User> users = [];
 
@@ -25,6 +25,7 @@ class _UserPageState extends State<UserPage> {
     });
   }
 
+  @override
   void initState() {
     super.initState();
     getUsers();
@@ -33,20 +34,21 @@ class _UserPageState extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Usuários'),
-          backgroundColor: Color(colorBlueSimple),
-        ),
-        body: ListView.builder(
-          itemCount: users.length,
-          itemBuilder: (context, index) {
-            return TitleCardUserWidget2(
-                name: users[index].fullName!,
-                phone: users[index].phone!,
-                tower: users[index].tower!,
-                apartment: users[index].apartment!,
-                idMorador: users[index].idMorador!.toString());
-          },
-        ));
+      appBar: AppBar(
+        title: Text('Usuários'),
+        backgroundColor: Color(colorBlueSimple),
+      ),
+      body: ListView.builder(
+        itemCount: users.length,
+        itemBuilder: (context, index) {
+          return TitleCardUserWidget2(
+              name: users[index].fullName!,
+              phone: users[index].phone!,
+              tower: users[index].tower!,
+              apartment: users[index].apartment!,
+              idMorador: users[index].idMorador!.toString());
+        },
+      ),
+    );
   }
 }
