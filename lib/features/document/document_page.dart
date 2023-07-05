@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
-import 'package:moradas/features/admin/create_documents_page.dart';
-import 'package:moradas/features/components/title_card_document_widget.dart';
 
-import '../admin/create_notice_page.dart';
+import 'package:moradas/features/components/title_card_document_widget.dart';
 
 class DocumentPage extends StatelessWidget {
   const DocumentPage({super.key});

@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
+import 'package:moradas/features/services/user_service.dart';
+import 'package:moradas/models/user_model.dart';
 
 class TitleCardUserWidget extends StatelessWidget {
   final IconData leftIcon;
   final Color iconColor;
-  final String name;
-  final String phone;
-  final String tower;
-  final String apartment;
+  User user = User();
 
-  const TitleCardUserWidget({
+  final String idMorador;
+  final bool isAdmin;
+
+  TitleCardUserWidget({
     super.key,
     this.leftIcon = Icons.people_alt,
     this.iconColor = const Color(colorBlueSimple),
-    required this.name,
-    required this.phone,
-    required this.tower,
-    required this.apartment,
+    this.idMorador = '',
+    this.isAdmin = false,
+    required this.user,
   });
 
   @override
@@ -25,59 +26,200 @@ class TitleCardUserWidget extends StatelessWidget {
       margin: const EdgeInsets.all(20),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10), color: Colors.white54),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Icon(
-                    leftIcon,
-                    color: iconColor,
-                    size: 30,
-                  ),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    name,
+      child: ListTile(
+        leading: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          isAdmin
+              ? CircleAvatar(radius: 19, child: Text('ADM'))
+              : Icon(leftIcon, color: iconColor, size: 30)
+        ]),
+        title: Text(user.fullName!,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Text('Telefone: ',
                     style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    'Telefone: $phone',
+                        fontSize: 18, color: Color(colorBlueSimple))),
+                Text(user.phone!,
                     style: const TextStyle(
-                        fontSize: 18, color: Color(colorBlueSimple)),
-                  ),
-                  Text(
-                    'Torre: $tower',
+                        fontSize: 18,
+                        color: Color(colorBlueSimple),
+                        fontWeight: FontWeight.bold)),
+              ],
+            ),
+            Row(
+              children: [
+                Text('Torre: ',
                     style: const TextStyle(
-                        fontSize: 18, color: Color(colorBlueSimple)),
-                  ),
-                  Text(
-                    'Apartamento: $apartment',
+                        fontSize: 18, color: Color(colorBlueSimple))),
+                Text(user.tower!,
                     style: const TextStyle(
-                        fontSize: 18, color: Color(colorBlueSimple)),
-                  ),
-                ],
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      size: 30,
+                        fontSize: 18,
+                        color: Color(colorBlueSimple),
+                        fontWeight: FontWeight.bold)),
+              ],
+            ),
+            Row(
+              children: [
+                Text('Apartamento: ',
+                    style: const TextStyle(
+                        fontSize: 18, color: Color(colorBlueSimple))),
+                Text(user.apartment!,
+                    style: const TextStyle(
+                        fontSize: 18,
+                        color: Color(colorBlueSimple),
+                        fontWeight: FontWeight.bold)),
+              ],
+            ),
+          ],
+        ),
+        trailing: PopupMenuButton(
+            color: Color(colorBlueSimple),
+            icon: Icon(Icons.more_vert, color: iconColor, size: 30),
+            itemBuilder: (context) => [
+                  PopupMenuItem<int>(
+                    value: 0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Editar",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        Icon(Icons.edit_rounded)
+                      ],
                     ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ],
+                  ),
+                  PopupMenuItem<int>(
+                    value: 1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Excluir",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        Icon(Icons.delete_rounded)
+                      ],
+                    ),
+                  ),
+                ],
+            onSelected: (item) => {
+                  if (item == 0)
+                    {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: const Text('Editar Usuário'),
+                          content: SizedBox(
+                            width: double.infinity,
+                            height: 450,
+                            child: Form(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  TextFormField(
+                                    initialValue: user.fullName,
+                                    decoration: InputDecoration(
+                                      labelText: 'Nome',
+                                    ),
+                                    onChanged: (value) {
+                                      user.fullName = value;
+                                    },
+                                    validator: (value) => value!.isEmpty
+                                        ? 'Por favor, insira um nome'
+                                        : null,
+                                    maxLength: 30,
+                                  ),
+                                  TextFormField(
+                                    initialValue: user.phone,
+                                    decoration: const InputDecoration(
+                                      labelText: 'Telefone',
+                                    ),
+                                    onChanged: (value) {
+                                      user.phone = value;
+                                    },
+                                    maxLength: 15,
+                                  ),
+                                  TextFormField(
+                                    initialValue: user.email,
+                                    decoration: InputDecoration(
+                                      labelText: 'Email',
+                                    ),
+                                    onChanged: (value) {
+                                      user.email = value;
+                                    },
+                                    maxLength: 30,
+                                  ),
+                                  TextFormField(
+                                    initialValue: user.tower,
+                                    decoration: InputDecoration(
+                                      labelText: 'Torre',
+                                    ),
+                                    onChanged: (value) {
+                                      user.tower = value;
+                                    },
+                                    maxLength: 30,
+                                  ),
+                                  TextFormField(
+                                    initialValue: user.apartment,
+                                    decoration: InputDecoration(
+                                      labelText: 'Apartamento',
+                                    ),
+                                    onChanged: (value) {
+                                      user.apartment = value;
+                                    },
+                                    maxLength: 30,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context, 'Cancelar');
+                              },
+                              child: const Text('Cancelar'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                UserService().updateById(idMorador, user);
+                                Navigator.pop(context, 'Salvar');
+                              },
+                              child: const Text('Salvar'),
+                            ),
+                          ],
+                        ),
+                      )
+                    }
+                  else if (item == 1)
+                    {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: const Text('Excluir Cliente'),
+                          content: const Text(
+                              'Tem certeza que deseja excluir esse cliente?'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'Não'),
+                              child: const Text('Não'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                UserService().deleteById(idMorador);
+                                Navigator.pop(context, 'Sim');
+                              },
+                              child: const Text('Sim'),
+                            ),
+                          ],
+                        ),
+                      )
+                    }
+                }),
       ),
     );
   }

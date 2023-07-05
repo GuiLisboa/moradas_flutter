@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
-import 'package:provider/provider.dart';
-import '../components/title_card_list_user_widget2.dart';
+
+import '../components/title_card_list_user_widget.dart';
 
 import '../../models/user_model.dart';
 import '../services/user_service.dart';
@@ -41,11 +41,8 @@ class _ListUserPageState extends State<ListUserPage> {
       body: ListView.builder(
         itemCount: users.length,
         itemBuilder: (context, index) {
-          return TitleCardUserWidget2(
-              name: users[index].fullName!,
-              phone: users[index].phone!,
-              tower: users[index].tower!,
-              apartment: users[index].apartment!,
+          return TitleCardUserWidget(
+              user: users[index],
               idMorador: users[index].idMorador!.toString());
         },
       ),
