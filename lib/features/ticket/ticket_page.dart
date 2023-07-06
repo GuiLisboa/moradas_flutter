@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
 
-import 'package:moradas/features/components/title_card_ticket_widget.dart';
+import 'package:moradas/features/components/title_card_list_ticket_widget.dart';
 
 class TicketPage extends StatefulWidget {
   const TicketPage({super.key});
