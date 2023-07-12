@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:moradas/features/services/message_service.dart';
 
 import '../../constants.dart';
 import '../../models/user_model.dart';
@@ -16,39 +17,6 @@ class UserService extends ChangeNotifier {
     ),
   );
 
-  void success(msg) {
-    Fluttertoast.showToast(
-        msg: msg,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 3,
-        backgroundColor: Colors.green[200],
-        textColor: Colors.green[900],
-        fontSize: 26.0);
-  }
-
-  void errorTimeOut(msg) {
-    Fluttertoast.showToast(
-        msg: msg,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 3,
-        backgroundColor: Colors.red[200],
-        textColor: Colors.red[900],
-        fontSize: 26.0);
-  }
-
-  void errorFail(msg) {
-    Fluttertoast.showToast(
-        msg: msg,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 3,
-        backgroundColor: Colors.red[200],
-        textColor: Colors.red[900],
-        fontSize: 26.0);
-  }
-
   Future addNewUser(context, User currentUser) async {
     fToast = FToast();
     fToast.init(context);
@@ -57,14 +25,14 @@ class UserService extends ChangeNotifier {
       var url = '$API/user/CreateUser';
       await _dio.post(url, data: currentUser.toJson());
 
-      success("Usuário cadastrado com sucesso!");
+      MessageService().success("Usuário cadastrado com sucesso!");
 
       Navigator.of(context).pop();
     } on DioError catch (e) {
       if (e.type == DioErrorType.connectTimeout) {
-        errorTimeOut("Erro ao comunicar com o servidor!");
+        MessageService().errorTimeOut("Erro ao comunicar com o servidor!");
       }
-      errorFail("Erro ao cadastrar usuário!");
+      MessageService().errorFail("Erro ao cadastrar usuário!");
     }
   }
 
@@ -81,7 +49,7 @@ class UserService extends ChangeNotifier {
       }
     } on DioError catch (e) {
       if (e.type == DioErrorType.connectTimeout) {
-        errorTimeOut("Erro ao comunicar com o servidor!");
+        MessageService().errorTimeOut("Erro ao comunicar com o servidor!");
       }
       print(e);
       return [];
@@ -93,10 +61,10 @@ class UserService extends ChangeNotifier {
       var url = '$API/user/deleteById/$id';
       await _dio.delete(url);
 
-      success("Usuário excluido com sucesso!");
+      MessageService().success("Usuário excluido com sucesso!");
     } on DioError catch (e) {
       if (e.type == DioErrorType.connectTimeout) {
-        errorTimeOut("Erro ao comunicar com o servidor!");
+        MessageService().errorTimeOut("Erro ao comunicar com o servidor!");
       }
       print(e);
     }
@@ -107,11 +75,11 @@ class UserService extends ChangeNotifier {
       var url = '$API/user/updateById/$id';
       await _dio.put(url, data: user.toJson());
 
-      success("Usuário atualizado com sucesso!");
+      MessageService().success("Usuário atualizado com sucesso!");
       notifyListeners();
     } on DioError catch (e) {
       if (e.type == DioErrorType.connectTimeout) {
-        errorTimeOut("Erro ao comunicar com o servidor!");
+        MessageService().errorTimeOut("Erro ao comunicar com o servidor!");
       }
       print(e);
     }
