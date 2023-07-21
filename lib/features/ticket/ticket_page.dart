@@ -6,6 +6,7 @@ import 'package:moradas/constants.dart';
 import 'package:moradas/features/components/title_card_list_ticket_widget.dart';
 
 import '../../models/ticket_model.dart';
+import '../components/title_card_list_ticket_widget2.dart';
 import '../services/ticket_service.dart';
 
 class TicketPage extends StatefulWidget {
@@ -38,9 +39,21 @@ class _TicketPageState extends State<TicketPage>
   TextEditingController _controllerDate = TextEditingController();
   TextEditingController _controllerTicket = TextEditingController();
 
+  final ticketService = new TicketService();
+  List<Ticket> tickets = [];
+
+  getTickets() async {
+    tickets = await ticketService.getTickets();
+
+    setState(() {
+      this.tickets = tickets;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
+    getTickets();
     _controller = TabController(length: tabs.length, vsync: this);
   }
 
@@ -151,7 +164,7 @@ class _TicketPageState extends State<TicketPage>
                           selectedItem: selectedTypeTicket,
                           onChanged: (value) => setState(() {
                             _controllerTicket.text = value!;
-                            ticket.ticketType = 1;
+                            ticket.ticketType = "1";
                           }),
                         );
                       },
@@ -225,21 +238,13 @@ class _TicketPageState extends State<TicketPage>
             ),
           ],
         ),
-        ListView(
-          children: <Widget>[
-            TitleCardTicketWidget(
-                leftIcon: Icons.not_started,
-                iconColor: Color(colorBlueSimple),
-                title: 'Ocorrência 1547',
-                status: 'Status: Em aberto',
-                ticketdescription: 'Breve Descrição: Barulho após o horár...'),
-            TitleCardTicketWidget(
-                leftIcon: Icons.not_started,
-                iconColor: Color(colorBlueSimple),
-                title: 'Ocorrência 1991',
-                status: 'Status: Em Andamento',
-                ticketdescription: 'Breve Descrição: Toneira pingando no ...'),
-          ],
+        ListView.builder(
+          itemCount: tickets.length,
+          itemBuilder: (context, index) {
+            return TitleCardTicketWidget(
+                ticket: tickets[index],
+                idOcorrencia: tickets[index].idTicket.toString());
+          },
         ),
       ]),
     );

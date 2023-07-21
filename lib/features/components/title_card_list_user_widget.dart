@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
+import 'package:moradas/features/admin/create_user_page.dart';
 import 'package:moradas/features/services/user_service.dart';
 import 'package:moradas/models/user_model.dart';
+
+import '../admin/list_user_page.dart';
 
 class TitleCardUserWidget extends StatelessWidget {
   final IconData leftIcon;
@@ -109,92 +112,91 @@ class TitleCardUserWidget extends StatelessWidget {
             onSelected: (item) => {
                   if (item == 0)
                     {
-                      Navigator.pushNamed(context, '/listUser', arguments: user)
-                      // showDialog(
-                      //   context: context,
-                      //   builder: (BuildContext context) => AlertDialog(
-                      //     title: const Text('Editar Usuário'),
-                      //     content: SizedBox(
-                      //       width: double.infinity,
-                      //       height: 450,
-                      //       child: Form(
-                      //         child: Column(
-                      //           crossAxisAlignment: CrossAxisAlignment.start,
-                      //           children: <Widget>[
-                      //             TextFormField(
-                      //               initialValue: user.fullName,
-                      //               decoration: InputDecoration(
-                      //                 labelText: 'Nome',
-                      //               ),
-                      //               onChanged: (value) {
-                      //                 user.fullName = value;
-                      //               },
-                      //               validator: (value) => value!.isEmpty
-                      //                   ? 'Por favor, insira um nome'
-                      //                   : null,
-                      //               maxLength: 30,
-                      //             ),
-                      //             TextFormField(
-                      //               initialValue: user.phone,
-                      //               decoration: const InputDecoration(
-                      //                 labelText: 'Telefone',
-                      //               ),
-                      //               onChanged: (value) {
-                      //                 user.phone = value;
-                      //               },
-                      //               maxLength: 15,
-                      //             ),
-                      //             TextFormField(
-                      //               initialValue: user.email,
-                      //               decoration: InputDecoration(
-                      //                 labelText: 'Email',
-                      //               ),
-                      //               onChanged: (value) {
-                      //                 user.email = value;
-                      //               },
-                      //               maxLength: 30,
-                      //             ),
-                      //             TextFormField(
-                      //               initialValue: user.tower,
-                      //               decoration: InputDecoration(
-                      //                 labelText: 'Torre',
-                      //               ),
-                      //               onChanged: (value) {
-                      //                 user.tower = value;
-                      //               },
-                      //               maxLength: 30,
-                      //             ),
-                      //             TextFormField(
-                      //               initialValue: user.apartment,
-                      //               decoration: InputDecoration(
-                      //                 labelText: 'Apartamento',
-                      //               ),
-                      //               onChanged: (value) {
-                      //                 user.apartment = value;
-                      //               },
-                      //               maxLength: 30,
-                      //             ),
-                      //           ],
-                      //         ),
-                      //       ),
-                      //     ),
-                      //     actions: <Widget>[
-                      //       TextButton(
-                      //         onPressed: () {
-                      //           Navigator.pop(context, 'Cancelar');
-                      //         },
-                      //         child: const Text('Cancelar'),
-                      //       ),
-                      //       TextButton(
-                      //         onPressed: () {
-                      //           UserService().updateById(idMorador, user);
-                      //           Navigator.pop(context, 'Salvar');
-                      //         },
-                      //         child: const Text('Salvar'),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // )
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: const Text('Editar Usuário'),
+                          content: SizedBox(
+                            width: double.infinity,
+                            height: 450,
+                            child: Form(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  TextFormField(
+                                    initialValue: user.fullName,
+                                    decoration: InputDecoration(
+                                      labelText: 'Nome',
+                                    ),
+                                    onChanged: (value) {
+                                      user.fullName = value;
+                                    },
+                                    validator: (value) => value!.isEmpty
+                                        ? 'Por favor, insira um nome'
+                                        : null,
+                                    maxLength: 30,
+                                  ),
+                                  TextFormField(
+                                    initialValue: user.phone,
+                                    decoration: const InputDecoration(
+                                      labelText: 'Telefone',
+                                    ),
+                                    onChanged: (value) {
+                                      user.phone = value;
+                                    },
+                                    maxLength: 15,
+                                  ),
+                                  TextFormField(
+                                    initialValue: user.email,
+                                    decoration: InputDecoration(
+                                      labelText: 'Email',
+                                    ),
+                                    onChanged: (value) {
+                                      user.email = value;
+                                    },
+                                    maxLength: 30,
+                                  ),
+                                  TextFormField(
+                                    initialValue: user.tower,
+                                    decoration: InputDecoration(
+                                      labelText: 'Torre',
+                                    ),
+                                    onChanged: (value) {
+                                      user.tower = value;
+                                    },
+                                    maxLength: 30,
+                                  ),
+                                  TextFormField(
+                                    initialValue: user.apartment,
+                                    decoration: InputDecoration(
+                                      labelText: 'Apartamento',
+                                    ),
+                                    onChanged: (value) {
+                                      user.apartment = value;
+                                    },
+                                    maxLength: 30,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context, 'Cancelar');
+                              },
+                              child: const Text('Cancelar'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                UserService().updateById(idMorador, user);
+                                Navigator.pop(context);
+                              },
+                              child: const Text('Salvar'),
+                            ),
+                          ],
+                        ),
+                      )
                     }
                   else if (item == 1)
                     {
@@ -212,7 +214,7 @@ class TitleCardUserWidget extends StatelessWidget {
                             TextButton(
                               onPressed: () {
                                 UserService().deleteById(idMorador);
-                                Navigator.pop(context, 'Sim');
+                                Navigator.pop(context);
                               },
                               child: const Text('Sim'),
                             ),

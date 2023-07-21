@@ -4,11 +4,11 @@ import 'package:moradas/models/user_model.dart';
 class Ticket {
   int? idTicket;
   late String? ocorrenceDate;
-  late int? ticketType;
+  late String? ticketType;
   late String? ticketDescription;
   late String? ticketLocalDescription;
   late String? status;
-  late DateTime? createdOn;
+  late String? createdOn;
   // late User user;
 
   Ticket({
@@ -17,18 +17,18 @@ class Ticket {
     this.ticketType,
     this.ticketDescription,
     this.ticketLocalDescription,
-    this.status,
+    this.status = "1",
     this.createdOn,
     // this.user.idMorador,
   });
 
   Ticket.fromJson(Map<String, dynamic> json) {
-    idTicket = json['idTicket'];
-    ocorrenceDate = json['ocorrenceDate'];
-    ticketType = json['ticketType'];
-    ticketDescription = json['ticketDescription'];
-    ticketLocalDescription = json['ticketLocalDescription'];
-    status = json['status'];
+    idTicket = json['idOcorrencia'];
+    ocorrenceDate = json['dataOcorrencia'];
+    ticketType = json['TipoOcorrencia_idTipoOcorrencia'];
+    ticketDescription = json['descricaoOcorrencia'];
+    ticketLocalDescription = json['localOcorrencia'];
+    status = json['StatusOcorrencia_idStatusOcorrencia'];
     createdOn = json['createdOn'];
     // user.idMorador = json['user.idMorador'];
   }
@@ -37,10 +37,10 @@ class Ticket {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['idTicket'] = idTicket!.toInt();
     data['ocorrenceDate'] = ocorrenceDate;
-    data['ticketType'] = ticketType;
+    data['ticketType'] = ticketType.toString();
     data['ticketDescription'] = ticketDescription;
     data['ticketLocalDescription'] = ticketLocalDescription;
-    data['status'] = status;
+    data['status'] = status.toString();
     data['createdOn'] = createdOn;
     return data;
   }

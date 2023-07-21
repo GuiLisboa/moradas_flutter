@@ -41,6 +41,7 @@ class UserService extends ChangeNotifier {
       var url = '$API/user/findAll';
       var response = await _dio.get(url);
       print(response.data);
+
       if (response.statusCode == 200) {
         var users = response.data as List;
         return users.map((user) => User.fromJson(user)).toList();
@@ -76,6 +77,7 @@ class UserService extends ChangeNotifier {
       await _dio.put(url, data: user.toJson());
 
       MessageService().success("Usuário atualizado com sucesso!");
+
       notifyListeners();
     } on DioError catch (e) {
       if (e.type == DioErrorType.connectTimeout) {
