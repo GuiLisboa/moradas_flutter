@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:moradas/models/user_model.dart';
-
 class Ticket {
   int? idTicket;
   late String? ocorrenceDate;
@@ -44,16 +41,4 @@ class Ticket {
     data['createdOn'] = createdOn;
     return data;
   }
-
-  // Map<String, dynamic> toJson() {
-  //   return {
-  //     'idTicket': idTicket,
-  //     'ocorrenceDate': ocorrenceDate,
-  //     'ticketType': ticketType,
-  //     'ticketDescription': ticketDescription,
-  //     'ticketLocalDescription': ticketLocalDescription,
-  //     'status': status,
-  //     'createdOn': createdOn
-  //   };
-  // }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
-import 'package:provider/provider.dart';
 
 import '../components/title_card_list_user_widget.dart';
 

@@ -1,4 +1,3 @@
-import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import '../../constants.dart';
 import '../../models/ticket_model.dart';

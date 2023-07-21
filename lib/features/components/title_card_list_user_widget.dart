@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
-import 'package:moradas/features/admin/create_user_page.dart';
 import 'package:moradas/features/services/user_service.dart';
 import 'package:moradas/models/user_model.dart';
-
-import '../admin/list_user_page.dart';
 
 class TitleCardUserWidget extends StatelessWidget {
   final IconData leftIcon;

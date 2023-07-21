@@ -6,7 +6,6 @@ import 'package:moradas/constants.dart';
 import 'package:moradas/features/components/title_card_list_ticket_widget.dart';
 
 import '../../models/ticket_model.dart';
-import '../components/title_card_list_ticket_widget2.dart';
 import '../services/ticket_service.dart';
 
 class TicketPage extends StatefulWidget {
