@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../constants.dart';
+import '../admin/create_user_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -149,17 +150,17 @@ class LoginPageState extends State<LoginPage> {
     return Column(
       children: <Widget>[
         Text(
-          '- OR -',
+          '- OU -',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w400,
           ),
         ),
         SizedBox(height: 20.0),
-        Text(
-          'Faça Login com',
-          style: kLabelStyle,
-        ),
+        // Text(
+        //   'Faça Login com',
+        //   style: kLabelStyle,
+        // ),
       ],
     );
   }
@@ -188,32 +189,33 @@ class LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildSocialBtnRow() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 30.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          _buildSocialBtn(
-            () => print('Login with Facebook'),
-            const AssetImage(
-              'assets/logos/facebook.jpg',
-            ),
-          ),
-          _buildSocialBtn(
-            () => print('Login with Google'),
-            const AssetImage(
-              'assets/logos/google.jpg',
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _buildSocialBtnRow() {
+  //   return Padding(
+  //     padding: const EdgeInsets.symmetric(vertical: 30.0),
+  //     child: Row(
+  //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //       children: <Widget>[
+  //         _buildSocialBtn(
+  //           () => print('Login with Facebook'),
+  //           const AssetImage(
+  //             'assets/logos/facebook.jpg',
+  //           ),
+  //         ),
+  //         _buildSocialBtn(
+  //           () => print('Login with Google'),
+  //           const AssetImage(
+  //             'assets/logos/google.jpg',
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget _buildSignupBtn() {
     return GestureDetector(
-      onTap: () => print('Sign Up Button Pressed'),
+      onTap: () => Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => CreateUserPage())),
       child: RichText(
         text: const TextSpan(
           children: [
@@ -295,7 +297,7 @@ class LoginPageState extends State<LoginPage> {
                       _buildRememberMeCheckbox(),
                       _buildLoginBtn(),
                       _buildSignInWithText(),
-                      _buildSocialBtnRow(),
+                      // _buildSocialBtnRow(),
                       _buildSignupBtn(),
                     ],
                   ),

@@ -4,6 +4,7 @@ import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:moradas/constants.dart';
 
 import 'package:moradas/features/components/title_card_list_ticket_widget.dart';
+import 'package:moradas/features/ticket/ticket_type.dart';
 
 import '../../models/ticket_model.dart';
 import '../services/ticket_service.dart';
@@ -24,14 +25,12 @@ class _TicketPageState extends State<TicketPage>
 
   Ticket ticket = Ticket();
 
-  static const List<String> typeTicket = <String>[
-    'Vazamento de água',
-    'Vazamento de gás',
-    'Vazamento de esgoto',
-    'Vizinho Barulhento'
-  ];
-
-  String? selectedTypeTicket = typeTicket.first;
+  // static List<TicketType> typeTicket = <TicketType>[
+  //   TicketType(idTicketType: 1, ticketTypeDescription: 'Reclamação'),
+  //   TicketType(idTicketType: 2, ticketTypeDescription: 'Sugestão'),
+  //   TicketType(idTicketType: 3, ticketTypeDescription: 'Elogio'),
+  //   TicketType(idTicketType: 4, ticketTypeDescription: 'Outros'),
+  // ];
 
   late TabController _controller;
 
@@ -41,11 +40,15 @@ class _TicketPageState extends State<TicketPage>
   final ticketService = new TicketService();
   List<Ticket> tickets = [];
 
+  List<TicketType> ticketTypes = [];
+
   getTickets() async {
     tickets = await ticketService.getTickets();
+    ticketTypes = await ticketService.getTicketType();
 
     setState(() {
       this.tickets = tickets;
+      // this.ticketTypes = ticketTypes;
     });
   }
 
@@ -159,11 +162,12 @@ class _TicketPageState extends State<TicketPage>
                         showMaterialScrollPicker(
                           context: context,
                           title: "Selecione o tipo de Ocorrência",
-                          items: typeTicket,
-                          selectedItem: selectedTypeTicket,
+                          items: ticketTypes,
+                          selectedItem: ticketTypes[0],
                           onChanged: (value) => setState(() {
-                            _controllerTicket.text = value!;
-                            ticket.ticketType = "1";
+                            _controllerTicket.text =
+                                value.ticketTypeDescription!;
+                            ticket.ticketType = value.idTicketType.toString();
                           }),
                         );
                       },

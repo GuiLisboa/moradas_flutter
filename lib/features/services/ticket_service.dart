@@ -4,6 +4,7 @@ import 'package:moradas/features/services/message_service.dart';
 
 import '../../constants.dart';
 import '../../models/ticket_model.dart';
+import '../ticket/ticket_type.dart';
 
 class TicketService {
   late FToast fToast;
@@ -42,6 +43,28 @@ class TicketService {
       if (response.statusCode == 200) {
         var tickets = response.data as List;
         return tickets.map((ticket) => Ticket.fromJson(ticket)).toList();
+      } else {
+        return [];
+      }
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.connectTimeout) {
+        MessageService().errorTimeOut("Erro ao comunicar com o servidor!");
+      }
+      MessageService().errorFail("Erro ao buscar tickets!");
+      print(e);
+      return [];
+    }
+  }
+
+  Future<List<TicketType>> getTicketType() async {
+    try {
+      var url = '$API/ticket/ticketType';
+      var response = await _dio.get(url);
+      print(response.data);
+
+      if (response.statusCode == 200) {
+        var tickets = response.data as List;
+        return tickets.map((ticket) => TicketType.fromJson(ticket)).toList();
       } else {
         return [];
       }
