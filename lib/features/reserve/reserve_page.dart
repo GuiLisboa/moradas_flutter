@@ -4,7 +4,7 @@ import 'package:moradas/constants.dart';
 import '../../models/reserve_location_model.dart';
 import '../../models/reserve_model.dart';
 import '../components/title_card_list_reserve_location_widget.dart';
-import '../components/title_card_list_reserve_widget copy.dart';
+import '../components/title_card_list_reserve_widget.dart';
 import '../services/reserve_service.dart';
 
 class ReservePage extends StatefulWidget {
@@ -86,7 +86,7 @@ class _ReservePageState extends State<ReservePage>
         ListView.builder(
           itemCount: reserves.length,
           itemBuilder: (context, index) {
-            return TitleCardReserveWidget2(reserve: reserves[index]);
+            return TitleCardReserveWidget(reserve: reserves[index]);
           },
         ),
       ]),

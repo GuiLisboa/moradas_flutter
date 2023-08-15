@@ -7,7 +7,7 @@ class ReserveLocation {
   late String? title;
   late String? usageFee;
   late String? capacity;
-  late int? isActive;
+  late bool? isActive;
 
   ReserveLocation({
     this.leftIcon,
@@ -15,7 +15,7 @@ class ReserveLocation {
     this.title,
     this.usageFee,
     this.capacity,
-    this.isActive = 1,
+    this.isActive = true,
   });
 
   ReserveLocation.fromJson(Map<String, dynamic> json) {
@@ -24,17 +24,16 @@ class ReserveLocation {
     title = json['nome'];
     usageFee = json['taxaUso'];
     capacity = json['capacidade'];
-    isActive = json['ativo'];
+    //isActive = json['ativo'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['idReserve'] = idReserveLocation!.toInt();
-    data['leftIcon'] = leftIcon.toString();
     data['title'] = title;
+    data['leftIcon'] = leftIcon.toString();
     data['usageFee'] = usageFee;
     data['capacity'] = capacity;
-    data['isActive'] = isActive;
+    //data['isActive'] = isActive;
     return data;
   }
 }

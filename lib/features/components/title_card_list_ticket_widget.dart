@@ -5,7 +5,7 @@ import '../../models/ticket_model.dart';
 class TitleCardTicketWidget extends StatelessWidget {
   final IconData leftIcon;
   final Color iconColor;
-  Ticket ticket = Ticket();
+  Ticket ticket = new Ticket();
 
   final String idOcorrencia;
 

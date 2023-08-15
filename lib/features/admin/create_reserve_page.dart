@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
+import 'package:moradas/features/services/reserve_service.dart';
+import 'package:moradas/models/reserve_location_model.dart';
 
-class CreateReservePage extends StatelessWidget {
+class CreateReservePage extends StatefulWidget {
   const CreateReservePage({super.key});
+
+  @override
+  State<CreateReservePage> createState() => _CreateReservePageState();
+}
+
+class _CreateReservePageState extends State<CreateReservePage> {
+  ReserveLocation reserveLocation = ReserveLocation();
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +31,8 @@ class CreateReservePage extends StatelessWidget {
                   children: [
                     TextFormField(
                       controller: null,
+                      maxLength: 15,
+                      keyboardType: TextInputType.text,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Título da Área Comum.',
@@ -30,7 +41,9 @@ class CreateReservePage extends StatelessWidget {
                           suffixIcon: Icon(
                             Icons.description,
                           )),
-                      onEditingComplete: () {},
+                      onChanged: (text) {
+                        reserveLocation.title = text;
+                      },
                     ),
                   ],
                 ),
@@ -44,6 +57,8 @@ class CreateReservePage extends StatelessWidget {
                   children: [
                     TextFormField(
                       controller: null,
+                      keyboardType: TextInputType.number,
+                      maxLength: 3,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Taxa de Uso.',
@@ -52,7 +67,9 @@ class CreateReservePage extends StatelessWidget {
                           suffixIcon: Icon(
                             Icons.attach_money,
                           )),
-                      onEditingComplete: () {},
+                      onChanged: (text) {
+                        reserveLocation.usageFee = text;
+                      },
                     ),
                   ],
                 ),
@@ -66,6 +83,8 @@ class CreateReservePage extends StatelessWidget {
                   children: [
                     TextFormField(
                       controller: null,
+                      keyboardType: TextInputType.number,
+                      maxLength: 3,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Capacidade da Área Comum.',
@@ -74,7 +93,9 @@ class CreateReservePage extends StatelessWidget {
                           suffixIcon: Icon(
                             Icons.emoji_people,
                           )),
-                      onEditingComplete: () {},
+                      onChanged: (text) {
+                        reserveLocation.capacity = text;
+                      },
                     ),
                   ],
                 ),
@@ -96,11 +117,37 @@ class CreateReservePage extends StatelessWidget {
                           suffixIcon: Icon(
                             Icons.add_reaction,
                           )),
-                      onEditingComplete: () {},
+                      onChanged: (text) {
+                        reserveLocation.leftIcon = text;
+                      },
                     ),
                   ],
                 ),
               ),
+            ),
+            Container(
+                child: CheckboxListTile(
+              title: Text("Ativo?"),
+              controlAffinity: ListTileControlAffinity.leading,
+              value: reserveLocation.isActive,
+              onChanged: (newValue) {
+                setState(() {
+                  reserveLocation.isActive = newValue;
+                });
+              },
+              activeColor: Colors.green,
+            )),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                textStyle: TextStyle(fontSize: 24),
+                shape: StadiumBorder(),
+                backgroundColor: Colors.amber,
+              ),
+              child: Text('Salvar'),
+              onPressed: () {
+                ReserveService()
+                    .addNewReserveLocation(context, reserveLocation);
+              },
             ),
           ],
         ),

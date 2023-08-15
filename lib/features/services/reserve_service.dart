@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:moradas/models/reserve_location_model.dart';
 import 'package:moradas/models/reserve_model.dart';
@@ -60,6 +61,25 @@ class ReserveService {
       MessageService().errorFail("Erro ao buscar reservas!");
       print(e);
       return [];
+    }
+  }
+
+  Future addNewReserveLocation(context, ReserveLocation reserveLocation) async {
+    fToast = FToast();
+    fToast.init(context);
+
+    try {
+      var url = '$API/reserve/createNewReserveLocation';
+      await _dio.post(url, data: reserveLocation.toJson());
+
+      MessageService().success("Espaço cadastrado com sucesso!");
+
+      Navigator.of(context).pop();
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.connectTimeout) {
+        MessageService().errorTimeOut("Erro ao comunicar com o servidor!");
+      }
+      MessageService().errorFail("Erro ao cadastrar espaço!");
     }
   }
 }

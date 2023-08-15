@@ -1,21 +1,18 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
+import 'package:moradas/models/reserve_model.dart';
 
 class TitleCardReserveWidget extends StatelessWidget {
   final IconData leftIcon;
   final Color iconColor;
-  final String title;
-  final String usageFee; //taxa de uso
-  final String capacity;
+  Reserve reserve = Reserve();
 
-  const TitleCardReserveWidget({
+  TitleCardReserveWidget({
     Key? key,
-    required this.leftIcon,
-    required this.iconColor,
-    required this.title,
-    required this.usageFee,
-    required this.capacity,
+    this.leftIcon = Icons.people_alt,
+    this.iconColor = const Color(colorBlueSimple),
+    required this.reserve,
   }) : super(key: key);
 
   @override
@@ -24,56 +21,106 @@ class TitleCardReserveWidget extends StatelessWidget {
       margin: const EdgeInsets.all(20),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10), color: Colors.white54),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListTile(
+        leading: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Icon(
+            leftIcon,
+            color: iconColor,
+            size: 30,
+          )
+        ]),
+        title: Text(reserve.title!,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Text('Taxa de uso: ',
+                    style: const TextStyle(
+                        fontSize: 18, color: Color(colorBlueSimple))),
+                Text('R\$${reserve.usageFee!},00',
+                    style: const TextStyle(
+                        fontSize: 18,
+                        color: Color(colorBlueSimple),
+                        fontWeight: FontWeight.bold)),
+              ],
+            ),
+            Row(
+              children: [
+                Text('Capacidade: ',
+                    style: const TextStyle(
+                        fontSize: 18, color: Color(colorBlueSimple))),
+                Text('${reserve.capacity!} pessoas',
+                    style: const TextStyle(
+                        fontSize: 18,
+                        color: Color(colorBlueSimple),
+                        fontWeight: FontWeight.bold)),
+              ],
+            ),
+            Row(
+              children: [
+                Text('Data reserva: ',
+                    style: const TextStyle(
+                        fontSize: 18, color: Color(colorBlueSimple))),
+                Text(
+                    (reserve.dateReserve!.substring(8, 10) +
+                        "/" +
+                        reserve.dateReserve!.substring(5, 7) +
+                        "/" +
+                        reserve.dateReserve!.substring(0, 4)),
+                    style: const TextStyle(
+                        fontSize: 18,
+                        color: Color(colorBlueSimple),
+                        fontWeight: FontWeight.bold)),
+              ],
+            ),
+          ],
+        ),
+        trailing: PopupMenuButton(
+          color: Color(colorBlueSimple),
+          icon: Icon(Icons.more_vert, color: iconColor, size: 30),
+          itemBuilder: (context) => [
+            PopupMenuItem<int>(
+              value: 0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                    leftIcon,
-                    color: iconColor,
-                    size: 30,
+                  Text(
+                    "Cancelar",
+                    style: TextStyle(color: Colors.white),
                   ),
+                  Icon(Icons.cancel)
                 ],
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ],
+          onSelected: (item) => {
+            if (item == 0)
+              {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    title: const Text('Cancelar'),
+                    content: const Text(
+                        'Tem certeza que deseja cancelar esta reserva?'),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'Não'),
+                        child: const Text('Não'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Sim'),
+                      ),
+                    ],
                   ),
-                  Text(
-                    usageFee,
-                    style: const TextStyle(
-                        fontSize: 18, color: Color(colorBlueSimple)),
-                  ),
-                  Text(
-                    capacity,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      color: Color(colorBlueSimple),
-                    ),
-                  ),
-                ],
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      size: 30,
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ],
+                )
+              }
+          },
+        ),
       ),
     );
   }
