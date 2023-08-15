@@ -4,7 +4,7 @@ import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:moradas/constants.dart';
 
 import 'package:moradas/features/components/title_card_list_ticket_widget.dart';
-import 'package:moradas/features/ticket/ticket_type.dart';
+import 'package:moradas/models/ticket_type_model.dart';
 
 import '../../models/ticket_model.dart';
 import '../services/ticket_service.dart';
@@ -24,13 +24,6 @@ class _TicketPageState extends State<TicketPage>
   ];
 
   Ticket ticket = Ticket();
-
-  // static List<TicketType> typeTicket = <TicketType>[
-  //   TicketType(idTicketType: 1, ticketTypeDescription: 'Reclamação'),
-  //   TicketType(idTicketType: 2, ticketTypeDescription: 'Sugestão'),
-  //   TicketType(idTicketType: 3, ticketTypeDescription: 'Elogio'),
-  //   TicketType(idTicketType: 4, ticketTypeDescription: 'Outros'),
-  // ];
 
   late TabController _controller;
 

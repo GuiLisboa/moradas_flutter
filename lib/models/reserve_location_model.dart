@@ -1,41 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:moradas/models/reserve_location_model.dart';
 
-class Reserve {
-  int? idReserve;
+class ReserveLocation {
+  int? idReserveLocation;
   late String? leftIcon;
   late Color? iconColor;
   late String? title;
   late String? usageFee;
   late String? capacity;
-  late String? dateReserve;
+  late int? isActive;
 
-  Reserve({
+  ReserveLocation({
     this.leftIcon,
     this.iconColor,
     this.title,
     this.usageFee,
     this.capacity,
-    this.dateReserve,
+    this.isActive = 1,
   });
 
-  Reserve.fromJson(Map<String, dynamic> json) {
-    idReserve = json['idreserva'];
+  ReserveLocation.fromJson(Map<String, dynamic> json) {
+    idReserveLocation = json['idEspacosComuns'];
     leftIcon = json['icone'];
     title = json['nome'];
     usageFee = json['taxaUso'];
     capacity = json['capacidade'];
-    dateReserve = json['dataLocacao'];
+    isActive = json['ativo'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['idReserve'] = idReserve!.toInt();
+    data['idReserve'] = idReserveLocation!.toInt();
     data['leftIcon'] = leftIcon.toString();
     data['title'] = title;
     data['usageFee'] = usageFee;
     data['capacity'] = capacity;
-    data['dateReserve'] = dateReserve;
+    data['isActive'] = isActive;
     return data;
   }
 }

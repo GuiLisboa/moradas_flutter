@@ -4,7 +4,7 @@ import 'package:moradas/features/services/message_service.dart';
 
 import '../../constants.dart';
 import '../../models/ticket_model.dart';
-import '../ticket/ticket_type.dart';
+import '../../models/ticket_type_model.dart';
 
 class TicketService {
   late FToast fToast;

@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Ticket {
   int? idTicket;
   late String? ocorrenceDate;

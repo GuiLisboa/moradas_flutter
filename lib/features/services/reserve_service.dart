@@ -1,0 +1,65 @@
+import 'package:dio/dio.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:moradas/models/reserve_location_model.dart';
+import 'package:moradas/models/reserve_model.dart';
+
+import '../../constants.dart';
+import 'message_service.dart';
+
+class ReserveService {
+  late FToast fToast;
+
+  final Dio _dio = Dio(
+    BaseOptions(
+      baseUrl: '$API/reserve/CreateReserve',
+      connectTimeout: 5000,
+      receiveTimeout: 3000,
+    ),
+  );
+
+  Future<List<ReserveLocation>> getLocations() async {
+    try {
+      var url = '$API/reserve/findAllLocation';
+      var response = await _dio.get(url);
+      print(response.data);
+
+      if (response.statusCode == 200) {
+        var reserves = response.data as List;
+        return reserves
+            .map((reserve) => ReserveLocation.fromJson(reserve))
+            .toList();
+      } else {
+        return [];
+      }
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.connectTimeout) {
+        MessageService().errorTimeOut("Erro ao comunicar com o servidor!");
+      }
+      MessageService().errorFail("Erro ao buscar espaços!");
+      print(e);
+      return [];
+    }
+  }
+
+  Future<List<Reserve>> getReserveByUserId(int id) async {
+    try {
+      var url = '$API/reserve/findReserveByUserId/$id';
+      var response = await _dio.get(url);
+      print(response.data);
+
+      if (response.statusCode == 200) {
+        var reserves = response.data as List;
+        return reserves.map((reserve) => Reserve.fromJson(reserve)).toList();
+      } else {
+        return [];
+      }
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.connectTimeout) {
+        MessageService().errorTimeOut("Erro ao comunicar com o servidor!");
+      }
+      MessageService().errorFail("Erro ao buscar reservas!");
+      print(e);
+      return [];
+    }
+  }
+}

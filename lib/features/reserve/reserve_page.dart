@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
 
-import 'package:moradas/features/components/title_card_list_reserve_widget.dart';
+import '../../models/reserve_location_model.dart';
+import '../../models/reserve_model.dart';
+import '../components/title_card_list_reserve_location_widget.dart';
+import '../components/title_card_list_reserve_widget copy.dart';
+import '../services/reserve_service.dart';
 
 class ReservePage extends StatefulWidget {
   const ReservePage({super.key});
@@ -19,9 +23,24 @@ class _ReservePageState extends State<ReservePage>
 
   late TabController _controller;
 
+  final reserveService = new ReserveService();
+  List<ReserveLocation> locationsReserve = [];
+  List<Reserve> reserves = [];
+
+  getLocations() async {
+    locationsReserve = await reserveService.getLocations();
+    reserves = await reserveService.getReserveByUserId(1);
+
+    setState(() {
+      this.locationsReserve = locationsReserve;
+      this.reserves = reserves;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
+    getLocations();
     _controller = TabController(length: tabs.length, vsync: this);
   }
 
@@ -57,97 +76,18 @@ class _ReservePageState extends State<ReservePage>
         ),
       ),
       body: TabBarView(controller: _controller, children: [
-        ListView(
-          children: <Widget>[
-            TitleCardReserveWidget(
-                leftIcon: Icons.pool,
-                iconColor: Color(colorBlueSimple),
-                title: 'Piscina',
-                usageFee: 'Taxa de Uso: R\$ 50,00',
-                capacity: 'Capacidade: 50 pessoas'),
-            TitleCardReserveWidget(
-                leftIcon: Icons.celebration,
-                iconColor: Color(colorBlueSimple),
-                title: 'Salão de Festas',
-                usageFee: 'Taxa de Uso: R\$ 100,00',
-                capacity: 'Capacidade: 100 pessoas'),
-            TitleCardReserveWidget(
-                leftIcon: Icons.sports_soccer,
-                iconColor: Color(colorBlueSimple),
-                title: 'Quadra de Futebol',
-                usageFee: 'Taxa de Uso: R\$ 50,00',
-                capacity: 'Capacidade: 50 pessoas'),
-            TitleCardReserveWidget(
-                leftIcon: Icons.sports_tennis,
-                iconColor: Color(colorBlueSimple),
-                title: 'Quadra de Tênis',
-                usageFee: 'Taxa de Uso: R\$ 50,00',
-                capacity: 'Capacidade: 50 pessoas'),
-            TitleCardReserveWidget(
-                leftIcon: Icons.sports_basketball,
-                iconColor: Color(colorBlueSimple),
-                title: 'Quadra de Basquete',
-                usageFee: 'Taxa de Uso: R\$ 50,00',
-                capacity: 'Capacidade: 50 pessoas'),
-            TitleCardReserveWidget(
-                leftIcon: Icons.sports_volleyball,
-                iconColor: Color(colorBlueSimple),
-                title: 'Quadra de Vôlei',
-                usageFee: 'Taxa de Uso: R\$ 50,00',
-                capacity: 'Capacidade: 50 pessoas'),
-            TitleCardReserveWidget(
-                leftIcon: Icons.sports_handball,
-                iconColor: Color(colorBlueSimple),
-                title: 'Quadra de Handebol',
-                usageFee: 'Taxa de Uso: R\$ 50,00',
-                capacity: 'Capacidade: 50 pessoas'),
-            TitleCardReserveWidget(
-                leftIcon: Icons.sports_baseball,
-                iconColor: Color(colorBlueSimple),
-                title: 'Quadra de Futebol de Areia',
-                usageFee: 'Taxa de Uso: R\$ 50,00',
-                capacity: 'Capacidade: 50 pessoas'),
-            TitleCardReserveWidget(
-                leftIcon: Icons.sports_cricket,
-                iconColor: Color(colorBlueSimple),
-                title: 'Quadra de Cricket',
-                usageFee: 'Taxa de Uso: R\$ 50,00',
-                capacity: 'Capacidade: 50 pessoas'),
-            TitleCardReserveWidget(
-                leftIcon: Icons.sports_golf,
-                iconColor: Color(colorBlueSimple),
-                title: 'Quadra de Golf',
-                usageFee: 'Taxa de Uso: R\$ 50,00',
-                capacity: 'Capacidade: 50 pessoas'),
-            TitleCardReserveWidget(
-                leftIcon: Icons.sports_mma,
-                iconColor: Color(colorBlueSimple),
-                title: 'Quadra de MMA',
-                usageFee: 'Taxa de Uso: R\$ 50,00',
-                capacity: 'Capacidade: 50 pessoas'),
-            TitleCardReserveWidget(
-                leftIcon: Icons.sports_rugby,
-                iconColor: Color(colorBlueSimple),
-                title: 'Quadra de Rugby',
-                usageFee: 'Taxa de Uso: R\$ 50,00',
-                capacity: 'Capacidade: 50 pessoas'),
-          ],
+        ListView.builder(
+          itemCount: locationsReserve.length,
+          itemBuilder: (context, index) {
+            return TitleCardReserveLocationWidget(
+                reserveLocation: locationsReserve[index]);
+          },
         ),
-        ListView(
-          children: <Widget>[
-            TitleCardReserveWidget(
-                leftIcon: Icons.pool,
-                iconColor: Color(colorBlueSimple),
-                title: 'Piscina',
-                usageFee: 'Taxa de Uso: R\$ 50,00',
-                capacity: 'Capacidade: 50 pessoas'),
-            TitleCardReserveWidget(
-                leftIcon: Icons.celebration,
-                iconColor: Color(colorBlueSimple),
-                title: 'Salão de Festas',
-                usageFee: 'Taxa de Uso: R\$ 100,00',
-                capacity: 'Capacidade: 100 pessoas'),
-          ],
+        ListView.builder(
+          itemCount: reserves.length,
+          itemBuilder: (context, index) {
+            return TitleCardReserveWidget2(reserve: reserves[index]);
+          },
         ),
       ]),
     );
