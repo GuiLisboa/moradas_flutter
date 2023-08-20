@@ -82,4 +82,18 @@ class ReserveService {
       MessageService().errorFail("Erro ao cadastrar espaço!");
     }
   }
+
+  Future deleteReserveById(int id) async {
+    try {
+      var url = '$API/reserve/deleteReserveById/$id';
+      await _dio.delete(url);
+
+      MessageService().success("Reserva excluida com sucesso!");
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.connectTimeout) {
+        MessageService().errorTimeOut("Erro ao comunicar com o servidor!");
+      }
+      print(e);
+    }
+  }
 }
