@@ -8,7 +8,7 @@ class Ticket {
   late String? ticketLocalDescription;
   late String? status;
   late String? createdOn;
-  // late User user;
+  late int? idMorador;
 
   Ticket({
     this.idTicket = 0,
@@ -18,18 +18,17 @@ class Ticket {
     this.ticketLocalDescription,
     this.status = "1",
     this.createdOn,
-    // this.user.idMorador,
+    this.idMorador,
   });
 
   Ticket.fromJson(Map<String, dynamic> json) {
     idTicket = json['idOcorrencia'];
     ocorrenceDate = json['dataOcorrencia'];
-    ticketType = json['TipoOcorrencia_idTipoOcorrencia'];
+    ticketType = json['tipoOcorrencia'];
     ticketDescription = json['descricaoOcorrencia'];
     ticketLocalDescription = json['localOcorrencia'];
-    status = json['StatusOcorrencia_idStatusOcorrencia'];
+    status = json['statusOcorrencia'];
     createdOn = json['createdOn'];
-    // user.idMorador = json['user.idMorador'];
   }
 
   Map<String, dynamic> toJson() {
@@ -41,6 +40,7 @@ class Ticket {
     data['ticketLocalDescription'] = ticketLocalDescription;
     data['status'] = status.toString();
     data['createdOn'] = createdOn;
+    data['morador_idMorador'] = idMorador;
     return data;
   }
 }

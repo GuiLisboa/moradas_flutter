@@ -1,3 +1,5 @@
+User? globalUserLoged;
+
 class User {
   int? idMorador;
   late String? fullName;
@@ -52,6 +54,7 @@ class User {
     // data['createdOn'] = createdOn;
     // data['isAdmin'] = isAdmin;
     // data['isActive'] = isActive;
+    print(data);
     return data;
   }
 }

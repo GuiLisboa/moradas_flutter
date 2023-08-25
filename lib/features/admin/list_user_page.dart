@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
+import 'package:provider/provider.dart';
 
 import '../components/title_card_list_user_widget.dart';
 
@@ -33,6 +34,10 @@ class _ListUserPageState extends State<ListUserPage> {
 
   @override
   Widget build(BuildContext context) {
+    final userService = context.watch<UserService>();
+
+    userService.getUsers();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Usuários'),

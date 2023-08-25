@@ -5,6 +5,7 @@ import 'package:moradas/features/document/document_page.dart';
 import 'package:moradas/features/reserve/reserve_page.dart';
 import 'package:moradas/features/ticket/ticket_page.dart';
 
+import '../../models/user_model.dart';
 import '../homePage/initial_page.dart';
 
 class HomePage extends StatefulWidget {

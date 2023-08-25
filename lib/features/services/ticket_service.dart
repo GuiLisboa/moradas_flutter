@@ -24,6 +24,7 @@ class TicketService {
     try {
       var url = '$API/ticket/CreateTicket';
       await _dio.post(url, data: currentTicket.toJson());
+      print(currentTicket.toJson());
 
       MessageService().success("Ticket cadastrado com sucesso!");
     } on DioError catch (e) {
@@ -37,6 +38,28 @@ class TicketService {
   Future<List<Ticket>> getTickets() async {
     try {
       var url = '$API/ticket/findAll';
+      var response = await _dio.get(url);
+      print(response.data);
+
+      if (response.statusCode == 200) {
+        var tickets = response.data as List;
+        return tickets.map((ticket) => Ticket.fromJson(ticket)).toList();
+      } else {
+        return [];
+      }
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.connectTimeout) {
+        MessageService().errorTimeOut("Erro ao comunicar com o servidor!");
+      }
+      MessageService().errorFail("Erro ao buscar tickets!");
+      print(e);
+      return [];
+    }
+  }
+
+  Future<List<Ticket>> getTicketByUserID(int id) async {
+    try {
+      var url = '$API/ticket/findById/$id';
       var response = await _dio.get(url);
       print(response.data);
 

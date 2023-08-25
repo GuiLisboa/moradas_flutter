@@ -5,6 +5,7 @@ import 'package:moradas/constants.dart';
 
 import 'package:moradas/features/components/title_card_list_ticket_widget.dart';
 import 'package:moradas/models/ticket_type_model.dart';
+import 'package:moradas/models/user_model.dart';
 
 import '../../models/ticket_model.dart';
 import '../services/ticket_service.dart';
@@ -36,7 +37,8 @@ class _TicketPageState extends State<TicketPage>
   List<TicketType> ticketTypes = [];
 
   getTickets() async {
-    tickets = await ticketService.getTickets();
+    tickets =
+        await ticketService.getTicketByUserID(globalUserLoged!.idMorador!);
     ticketTypes = await ticketService.getTicketType();
 
     setState(() {
@@ -226,6 +228,7 @@ class _TicketPageState extends State<TicketPage>
               ),
               child: Text('Criar Ocorrência'),
               onPressed: () {
+                ticket.idMorador = globalUserLoged!.idMorador!;
                 TicketService().addNewTicket(context, ticket);
                 setState(() {
                   _controller.index = 1;

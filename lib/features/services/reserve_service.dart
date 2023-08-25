@@ -7,7 +7,7 @@ import 'package:moradas/models/reserve_model.dart';
 import '../../constants.dart';
 import 'message_service.dart';
 
-class ReserveService {
+class ReserveService extends ChangeNotifier {
   late FToast fToast;
 
   final Dio _dio = Dio(

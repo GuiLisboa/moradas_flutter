@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:moradas/features/services/user_login_service.dart';
+import 'package:moradas/features/services/user_service.dart';
+import 'package:moradas/models/user_login_model.dart';
+import 'package:moradas/models/user_model.dart';
 
 import '../../constants.dart';
 import '../admin/create_user_page.dart';
@@ -14,6 +18,17 @@ class LoginPage extends StatefulWidget {
 class LoginPageState extends State<LoginPage> {
   bool _rememberMe = false;
 
+  final userLoginService = new UserLoginService();
+  UserLogin userLogin = new UserLogin();
+
+  List<User> userIsCorrect = [];
+
+  User userLoged = new User();
+
+  User get correntUser {
+    return userLoged;
+  }
+
   Widget _buildEmailTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,7 +42,7 @@ class LoginPageState extends State<LoginPage> {
           alignment: Alignment.centerLeft,
           decoration: kBoxDecorationStyle,
           height: 60.0,
-          child: const TextField(
+          child: TextFormField(
             keyboardType: TextInputType.emailAddress,
             style: TextStyle(
               color: Colors.white,
@@ -43,6 +58,9 @@ class LoginPageState extends State<LoginPage> {
               hintText: 'Digite Seu e-mail',
               hintStyle: kHintTextStyle,
             ),
+            onChanged: (text) {
+              userLogin.email = text;
+            },
           ),
         ),
       ],
@@ -62,7 +80,7 @@ class LoginPageState extends State<LoginPage> {
           alignment: Alignment.centerLeft,
           decoration: kBoxDecorationStyle,
           height: 60.0,
-          child: const TextField(
+          child: TextFormField(
             obscureText: true,
             style: TextStyle(
               color: Colors.white,
@@ -78,6 +96,9 @@ class LoginPageState extends State<LoginPage> {
               hintText: 'Digite Sua Senha',
               hintStyle: kHintTextStyle,
             ),
+            onChanged: (text) {
+              userLogin.password = text;
+            },
           ),
         ),
       ],
@@ -138,7 +159,17 @@ class LoginPageState extends State<LoginPage> {
               borderRadius: BorderRadius.circular(15.0),
             ),
           ),
-          onPressed: () => Navigator.of(context).popAndPushNamed('/home'),
+          //onPressed: () => Navigator.of(context).popAndPushNamed('/home'),
+          onPressed: () async {
+            userIsCorrect = await userLoginService.findByLogin(userLogin);
+            userIsCorrect.forEach((element) {
+              if (element.email == userLogin.email &&
+                  element.password == userLogin.password) {
+                globalUserLoged = userIsCorrect[0];
+                Navigator.of(context).popAndPushNamed('/home');
+              }
+            });
+          },
           child: const Text(
             'Fazer Login',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),

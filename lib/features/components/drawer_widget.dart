@@ -5,6 +5,7 @@ import 'package:moradas/features/admin/create_notice_page.dart';
 import 'package:moradas/features/admin/create_reserve_page.dart';
 import 'package:moradas/features/admin/create_user_page.dart';
 import 'package:moradas/features/admin/list_user_page.dart';
+import 'package:moradas/models/user_model.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -18,8 +19,8 @@ class DrawerWidget extends StatelessWidget {
             decoration: BoxDecoration(
               color: Color(colorBlueSimple),
             ),
-            accountName: Text('Guilherme Lisboa Chaves'),
-            accountEmail: Text('glc_chaves@hotmail.com'),
+            accountName: Text(globalUserLoged!.fullName!),
+            accountEmail: Text(globalUserLoged!.email!),
             currentAccountPicture: CircleAvatar(
               backgroundImage:
                   AssetImage('assets/images/condominio-edificio-bellatrix.jpg'),
@@ -28,7 +29,10 @@ class DrawerWidget extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.my_location),
             title: Text('Condominio Belatrix'),
-            subtitle: Text('Bloco: 1 Apartamento 14'),
+            subtitle: Text('Bloco: ' +
+                globalUserLoged!.tower! +
+                ' Apartamento: ' +
+                globalUserLoged!.apartment!),
           ),
           ListTile(
               leading: Icon(Icons.groups),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
+import 'package:moradas/features/login/login_page.dart';
+import 'package:moradas/models/user_model.dart';
 
 import '../../models/reserve_location_model.dart';
 import '../../models/reserve_model.dart';
@@ -29,7 +31,8 @@ class _ReservePageState extends State<ReservePage>
 
   getLocations() async {
     locationsReserve = await reserveService.getLocations();
-    reserves = await reserveService.getReserveByUserId(1);
+    reserves =
+        await reserveService.getReserveByUserId(globalUserLoged!.idMorador!);
 
     setState(() {
       this.locationsReserve = locationsReserve;
