@@ -86,12 +86,24 @@ class _ReservePageState extends State<ReservePage>
                 reserveLocation: locationsReserve[index]);
           },
         ),
-        ListView.builder(
-          itemCount: reserves.length,
-          itemBuilder: (context, index) {
-            return TitleCardReserveWidget(reserve: reserves[index]);
-          },
-        ),
+        (() {
+          if (reserves.length == 0) {
+            return Container(
+                margin: EdgeInsets.all(20),
+                child: Center(
+                    child: Text(
+                  'Você ainda não possui reservas',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                )));
+          } else {
+            return ListView.builder(
+              itemCount: reserves.length,
+              itemBuilder: (context, index) {
+                return TitleCardReserveWidget(reserve: reserves[index]);
+              },
+            );
+          }
+        }()),
       ]),
     );
   }

@@ -237,14 +237,26 @@ class _TicketPageState extends State<TicketPage>
             ),
           ],
         ),
-        ListView.builder(
-          itemCount: tickets.length,
-          itemBuilder: (context, index) {
-            return TitleCardTicketWidget(
-                ticket: tickets[index],
-                idOcorrencia: tickets[index].idTicket.toString());
-          },
-        ),
+        (() {
+          if (tickets.length == 0) {
+            return Container(
+                margin: EdgeInsets.all(20),
+                child: Center(
+                    child: Text(
+                  'Você ainda não possui ocorrências',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                )));
+          } else {
+            return ListView.builder(
+              itemCount: tickets.length,
+              itemBuilder: (context, index) {
+                return TitleCardTicketWidget(
+                    ticket: tickets[index],
+                    idOcorrencia: tickets[index].idTicket.toString());
+              },
+            );
+          }
+        }()),
       ]),
     );
   }

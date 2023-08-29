@@ -10,8 +10,8 @@ class User {
   late String? apartment;
   late String? password;
   // late DateTime? createdOn;
-  bool? isAdmin;
-  bool? isActive;
+  int? isAdmin;
+  int? isActive;
 
   User({
     this.idMorador = 0,
@@ -23,8 +23,8 @@ class User {
     this.apartment,
     this.password,
     // this.createdOn,
-    this.isAdmin = false,
-    this.isActive = true,
+    this.isAdmin = 0,
+    this.isActive = 1,
   });
 
   User.fromJson(Map<String, dynamic> json) {
@@ -37,8 +37,8 @@ class User {
     apartment = json['apartment'];
     password = json['password'];
     //createdOn = json['createdOn'];
-    // isAdmin = json['isAdmin'] ?? true;
-    // isActive = json['isActive'] ?? true;
+    isAdmin = int.parse(json['isAdmin']);
+    isActive = int.parse(json['isActive']);
   }
 
   Map<String, dynamic> toJson() {
@@ -52,8 +52,8 @@ class User {
     data['apartment'] = apartment;
     data['password'] = password;
     // data['createdOn'] = createdOn;
-    // data['isAdmin'] = isAdmin;
-    // data['isActive'] = isActive;
+    data['isAdmin'] = isAdmin.toString();
+    data['isActive'] = isActive.toString();
     print(data);
     return data;
   }

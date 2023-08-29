@@ -34,49 +34,64 @@ class DrawerWidget extends StatelessWidget {
                 ' Apartamento: ' +
                 globalUserLoged!.apartment!),
           ),
-          ListTile(
-              leading: Icon(Icons.groups),
-              title: Text('Usuários do Sistema'),
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => ListUserPage()),
-                );
-              }),
-          ListTile(
-              leading: Icon(Icons.person_add),
-              title: Text('Adicionar Usuário no Sistema'),
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => CreateUserPage()),
-                );
-              }),
-          ListTile(
-            leading: Icon(Icons.notification_add),
-            title: Text('Criar Aviso'),
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => CreateNoticePage()),
+          (() {
+            if (globalUserLoged!.isAdmin == 1) {
+              return Column(
+                children: [
+                  ListTile(
+                      leading: Icon(Icons.groups),
+                      title: Text('Usuários do Sistema'),
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => ListUserPage()),
+                        );
+                      }),
+                  ListTile(
+                      leading: Icon(Icons.person_add),
+                      title: Text('Adicionar Usuário no Sistema'),
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => CreateUserPage()),
+                        );
+                      }),
+                  ListTile(
+                    leading: Icon(Icons.notification_add),
+                    title: Text('Criar Aviso'),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => CreateNoticePage()),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.real_estate_agent),
+                    title: Text('Criar Espaço de Área Comum'),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => CreateReservePage()),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.description),
+                    title: Text('Criar Documento'),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => CreateDocumentsPage()),
+                      );
+                    },
+                  )
+                ],
               );
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.real_estate_agent),
-            title: Text('Criar Espaço de Área Comum'),
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => CreateReservePage()),
-              );
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.description),
-            title: Text('Criar Documento'),
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => CreateDocumentsPage()),
-              );
-            },
-          )
+            } else {
+              return Container();
+            }
+          }()),
         ],
       ),
     );

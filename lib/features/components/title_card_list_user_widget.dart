@@ -28,7 +28,7 @@ class TitleCardUserWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(10), color: Colors.white54),
       child: ListTile(
         leading: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          isAdmin
+          user.isAdmin! == 1
               ? CircleAvatar(radius: 19, child: Text('ADM'))
               : Icon(leftIcon, color: iconColor, size: 30)
         ]),

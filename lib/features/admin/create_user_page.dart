@@ -297,10 +297,10 @@ class _CreateUserPageState extends State<CreateUserPage> {
                     child: CheckboxListTile(
                   title: Text("Administrador?"),
                   controlAffinity: ListTileControlAffinity.leading,
-                  value: user.isAdmin,
+                  value: user.isAdmin == 1 ? true : false,
                   onChanged: (newValue) {
                     setState(() {
-                      user.isAdmin = newValue;
+                      user.isAdmin = newValue! ? 1 : 0;
                     });
                   },
                   activeColor: Colors.green,
