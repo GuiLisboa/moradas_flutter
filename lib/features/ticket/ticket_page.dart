@@ -27,24 +27,26 @@ class _TicketPageState extends State<TicketPage>
   ];
 
   Ticket ticket = Ticket();
-
-  late TabController _controller;
-
-  TextEditingController _controllerDate = TextEditingController();
-  TextEditingController _controllerTicket = TextEditingController();
-
   List<Ticket> tickets = [];
   List<TicketType> ticketTypes = [];
 
-  @override
-  void initState() {
-    super.initState();
+  late TabController _controller;
+  TextEditingController _controllerDate = TextEditingController();
+  TextEditingController _controllerTicket = TextEditingController();
+
+  void update() {
     if (globalUserLoged!.isAdmin! == 1) {
       Provider.of<TicketController>(context, listen: false).getTickets();
     } else {
       Provider.of<TicketController>(context, listen: false)
           .getTicketByUserID(globalUserLoged!.idMorador!);
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    update();
     _controller = TabController(length: tabs.length, vsync: this);
   }
 
@@ -227,13 +229,7 @@ class _TicketPageState extends State<TicketPage>
               onPressed: () {
                 ticket.idMorador = globalUserLoged!.idMorador!;
                 ticketController.addNewTicket(context, ticket).then((value) {
-                  if (globalUserLoged!.isAdmin! == 1) {
-                    Provider.of<TicketController>(context, listen: false)
-                        .getTickets();
-                  } else {
-                    Provider.of<TicketController>(context, listen: false)
-                        .getTicketByUserID(globalUserLoged!.idMorador!);
-                  }
+                  update();
                 });
                 setState(() {
                   _controller.index = 1;
