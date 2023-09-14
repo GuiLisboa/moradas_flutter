@@ -7,7 +7,7 @@ import 'package:moradas/models/reserve_model.dart';
 import '../../constants.dart';
 import 'message_service.dart';
 
-class ReserveService extends ChangeNotifier {
+class ReserveService {
   late FToast fToast;
 
   final Dio _dio = Dio(
@@ -80,6 +80,36 @@ class ReserveService extends ChangeNotifier {
         MessageService().errorTimeOut("Erro ao comunicar com o servidor!");
       }
       MessageService().errorFail("Erro ao cadastrar espaço!");
+    }
+  }
+
+  Future disableReserveLocationById(int id) async {
+    try {
+      var url = '$API/reserve/disableReserveLocationById/$id';
+      await _dio.put(url);
+
+      MessageService().success("Espaço desativado com sucesso!");
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.connectTimeout) {
+        MessageService().errorTimeOut("Erro ao comunicar com o servidor!");
+      }
+      print(e);
+    }
+  }
+
+  Future addNewReserve(Reserve reserve) async {
+    fToast = FToast();
+
+    try {
+      var url = '$API/reserve/createNewReserve';
+      await _dio.post(url, data: reserve.toJson());
+
+      MessageService().success("Reserva cadastrada com sucesso!");
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.connectTimeout) {
+        MessageService().errorTimeOut("Erro ao comunicar com o servidor!");
+      }
+      MessageService().errorFail("Erro ao cadastrar reserva!");
     }
   }
 

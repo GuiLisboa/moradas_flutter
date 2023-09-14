@@ -2,8 +2,10 @@ import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:moradas/constants.dart';
+import 'package:moradas/features/controller/user_controller.dart';
 
 import 'package:moradas/features/services/user_service.dart';
+import 'package:provider/provider.dart';
 import '../../models/user_model.dart';
 
 class CreateUserPage extends StatefulWidget {
@@ -22,6 +24,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
 
   @override
   Widget build(BuildContext context) {
+    final userController = context.watch<UserController>();
     return Scaffold(
       appBar: AppBar(
         title: Text('Cadastro de Usuário'),
@@ -313,7 +316,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
                   ),
                   child: Text('Salvar'),
                   onPressed: () {
-                    UserService().addNewUser(context, user);
+                    userController.addNewUser(context, user);
                   },
                 ),
               ],

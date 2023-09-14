@@ -4,8 +4,10 @@ import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:moradas/constants.dart';
 
 import 'package:moradas/features/components/title_card_list_ticket_widget.dart';
+import 'package:moradas/features/controller/ticket_controller.dart';
 import 'package:moradas/models/ticket_type_model.dart';
 import 'package:moradas/models/user_model.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/ticket_model.dart';
 import '../services/ticket_service.dart';
@@ -31,26 +33,18 @@ class _TicketPageState extends State<TicketPage>
   TextEditingController _controllerDate = TextEditingController();
   TextEditingController _controllerTicket = TextEditingController();
 
-  final ticketService = new TicketService();
   List<Ticket> tickets = [];
-
   List<TicketType> ticketTypes = [];
-
-  getTickets() async {
-    tickets =
-        await ticketService.getTicketByUserID(globalUserLoged!.idMorador!);
-    ticketTypes = await ticketService.getTicketType();
-
-    setState(() {
-      this.tickets = tickets;
-      // this.ticketTypes = ticketTypes;
-    });
-  }
 
   @override
   void initState() {
     super.initState();
-    getTickets();
+    if (globalUserLoged!.isAdmin! == 1) {
+      Provider.of<TicketController>(context, listen: false).getTickets();
+    } else {
+      Provider.of<TicketController>(context, listen: false)
+          .getTicketByUserID(globalUserLoged!.idMorador!);
+    }
     _controller = TabController(length: tabs.length, vsync: this);
   }
 
@@ -62,6 +56,9 @@ class _TicketPageState extends State<TicketPage>
 
   @override
   Widget build(BuildContext context) {
+    final ticketController = context.watch<TicketController>();
+    tickets = ticketController.tickets;
+    ticketTypes = ticketController.ticketTypes;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(colorBlueSimple),
@@ -229,7 +226,15 @@ class _TicketPageState extends State<TicketPage>
               child: Text('Criar Ocorrência'),
               onPressed: () {
                 ticket.idMorador = globalUserLoged!.idMorador!;
-                TicketService().addNewTicket(context, ticket);
+                ticketController.addNewTicket(context, ticket).then((value) {
+                  if (globalUserLoged!.isAdmin! == 1) {
+                    Provider.of<TicketController>(context, listen: false)
+                        .getTickets();
+                  } else {
+                    Provider.of<TicketController>(context, listen: false)
+                        .getTicketByUserID(globalUserLoged!.idMorador!);
+                  }
+                });
                 setState(() {
                   _controller.index = 1;
                 });
@@ -238,7 +243,7 @@ class _TicketPageState extends State<TicketPage>
           ],
         ),
         (() {
-          if (tickets.length == 0) {
+          if (tickets.isEmpty) {
             return Container(
                 margin: EdgeInsets.all(20),
                 child: Center(

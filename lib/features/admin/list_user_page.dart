@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
+import 'package:moradas/features/services/user_service.dart';
 import 'package:provider/provider.dart';
 
 import '../components/title_card_list_user_widget.dart';
 
 import '../../models/user_model.dart';
-import '../services/user_service.dart';
+import '../controller/user_controller.dart';
 
 class ListUserPage extends StatefulWidget {
   const ListUserPage({super.key});
@@ -15,42 +16,40 @@ class ListUserPage extends StatefulWidget {
 }
 
 class _ListUserPageState extends State<ListUserPage> {
-  final userService = new UserService();
   List<User> users = [];
-
-  getUsers() async {
-    users = await userService.getUsers();
-
-    setState(() {
-      this.users = users;
-    });
-  }
 
   @override
   void initState() {
     super.initState();
-    getUsers();
+    Provider.of<UserController>(context, listen: false).getUsers();
   }
 
   @override
   Widget build(BuildContext context) {
-    final userService = context.watch<UserService>();
-
-    userService.getUsers();
+    final userController = context.watch<UserController>();
+    users = userController.users; // Provider
+    debugPrint('Quantidade no page: ${users.length}');
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Usuários'),
         backgroundColor: Color(colorBlueSimple),
       ),
-      body: ListView.builder(
-        itemCount: users.length,
-        itemBuilder: (context, index) {
-          return TitleCardUserWidget(
-              user: users[index],
-              idMorador: users[index].idMorador!.toString());
-        },
-      ),
+      body: (() {
+        if (users.isEmpty) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else {
+          return ListView.builder(
+              itemCount: users.length,
+              itemBuilder: (context, int index) {
+                return TitleCardUserWidget(
+                  user: users[index],
+                );
+              });
+        }
+      }()),
     );
   }
 }

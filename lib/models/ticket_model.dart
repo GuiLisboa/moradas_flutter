@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Ticket {
   int? idTicket;
   late String? ocorrenceDate;
@@ -39,7 +37,7 @@ class Ticket {
     data['ticketDescription'] = ticketDescription;
     data['ticketLocalDescription'] = ticketLocalDescription;
     data['status'] = status.toString();
-    data['createdOn'] = createdOn;
+    //data['createdOn'] = createdOn = createdOn! + " 00:00:00.000";
     data['morador_idMorador'] = idMorador;
     return data;
   }

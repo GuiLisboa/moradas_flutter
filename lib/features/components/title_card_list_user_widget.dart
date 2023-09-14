@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
+import 'package:moradas/features/admin/list_user_page.dart';
+import 'package:moradas/features/controller/user_controller.dart';
 import 'package:moradas/features/services/user_service.dart';
 import 'package:moradas/models/user_model.dart';
+import 'package:provider/provider.dart';
 
 class TitleCardUserWidget extends StatelessWidget {
   final IconData leftIcon;
@@ -22,6 +25,7 @@ class TitleCardUserWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userController = context.watch<UserController>();
     return Container(
       margin: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -186,7 +190,8 @@ class TitleCardUserWidget extends StatelessWidget {
                             ),
                             TextButton(
                               onPressed: () {
-                                UserService().updateById(idMorador, user);
+                                userController.updateById(
+                                    user.idMorador.toString(), user);
                                 Navigator.pop(context);
                               },
                               child: const Text('Salvar'),
@@ -210,7 +215,8 @@ class TitleCardUserWidget extends StatelessWidget {
                             ),
                             TextButton(
                               onPressed: () {
-                                UserService().deleteById(idMorador);
+                                userController.deleteById(
+                                    user.idMorador.toString(), user);
                                 Navigator.pop(context);
                               },
                               child: const Text('Sim'),

@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
 import 'package:moradas/features/login/login_page.dart';
 import 'package:moradas/models/user_model.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/reserve_location_model.dart';
 import '../../models/reserve_model.dart';
 import '../components/title_card_list_reserve_location_widget.dart';
 import '../components/title_card_list_reserve_widget.dart';
+import '../controller/reserve_controller.dart';
 import '../services/reserve_service.dart';
 
 class ReservePage extends StatefulWidget {
@@ -25,25 +27,13 @@ class _ReservePageState extends State<ReservePage>
 
   late TabController _controller;
 
-  final reserveService = new ReserveService();
   List<ReserveLocation> locationsReserve = [];
   List<Reserve> reserves = [];
-
-  getLocations() async {
-    locationsReserve = await reserveService.getLocations();
-    reserves =
-        await reserveService.getReserveByUserId(globalUserLoged!.idMorador!);
-
-    setState(() {
-      this.locationsReserve = locationsReserve;
-      this.reserves = reserves;
-    });
-  }
 
   @override
   void initState() {
     super.initState();
-    getLocations();
+    Provider.of<ReserveController>(context, listen: false).getLocations();
     _controller = TabController(length: tabs.length, vsync: this);
   }
 
@@ -55,6 +45,9 @@ class _ReservePageState extends State<ReservePage>
 
   @override
   Widget build(BuildContext context) {
+    final reserveController = context.watch<ReserveController>();
+    locationsReserve = reserveController.locationsReserve;
+    reserves = reserveController.reserves;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(colorBlueSimple),

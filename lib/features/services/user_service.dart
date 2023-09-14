@@ -6,7 +6,7 @@ import 'package:moradas/features/services/message_service.dart';
 import '../../constants.dart';
 import '../../models/user_model.dart';
 
-class UserService extends ChangeNotifier {
+class UserService {
   late FToast fToast;
 
   final Dio _dio = Dio(
@@ -23,8 +23,7 @@ class UserService extends ChangeNotifier {
 
     try {
       var url = '$API/user/CreateUser';
-      await _dio.post(url, data: currentUser.toJson());
-
+      var response = await _dio.post(url, data: currentUser.toJson());
       MessageService().success("Usuário cadastrado com sucesso!");
 
       Navigator.of(context).pop();
@@ -44,6 +43,7 @@ class UserService extends ChangeNotifier {
 
       if (response.statusCode == 200) {
         var users = response.data as List;
+        debugPrint('Quantidade no service: ${users.length}');
         return users.map((user) => User.fromJson(user)).toList();
       } else {
         return [];
@@ -77,8 +77,6 @@ class UserService extends ChangeNotifier {
       await _dio.put(url, data: user.toJson());
 
       MessageService().success("Usuário atualizado com sucesso!");
-
-      notifyListeners();
     } on DioError catch (e) {
       if (e.type == DioErrorType.connectTimeout) {
         MessageService().errorTimeOut("Erro ao comunicar com o servidor!");

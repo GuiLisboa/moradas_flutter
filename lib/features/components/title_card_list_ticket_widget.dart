@@ -47,16 +47,26 @@ class TitleCardTicketWidget extends StatelessWidget {
                 Text('Data Abertura: ',
                     style: const TextStyle(
                         fontSize: 18, color: Color(colorBlueSimple))),
-                Text(
-                    (ticket.ocorrenceDate!.substring(8, 10) +
-                        "/" +
-                        ticket.ocorrenceDate!.substring(5, 7) +
-                        "/" +
-                        ticket.ocorrenceDate!.substring(0, 4)),
-                    style: const TextStyle(
-                        fontSize: 18,
-                        color: Color(colorBlueSimple),
-                        fontWeight: FontWeight.bold)),
+                (() {
+                  if (ticket.ocorrenceDate!.length > 20) {
+                    return Text(
+                        (ticket.ocorrenceDate!.substring(8, 10) +
+                            "/" +
+                            ticket.ocorrenceDate!.substring(5, 7) +
+                            "/" +
+                            ticket.ocorrenceDate!.substring(0, 4)),
+                        style: const TextStyle(
+                            fontSize: 18,
+                            color: Color(colorBlueSimple),
+                            fontWeight: FontWeight.bold));
+                  } else {
+                    return Text(ticket.ocorrenceDate!,
+                        style: const TextStyle(
+                            fontSize: 18,
+                            color: Color(colorBlueSimple),
+                            fontWeight: FontWeight.bold));
+                  }
+                }()),
               ],
             ),
             Row(

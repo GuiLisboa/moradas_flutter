@@ -1,8 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
-import 'package:moradas/features/services/reserve_service.dart';
 import 'package:moradas/models/reserve_model.dart';
+import 'package:provider/provider.dart';
+
+import '../controller/reserve_controller.dart';
 
 class TitleCardReserveWidget extends StatelessWidget {
   final IconData leftIcon;
@@ -18,6 +20,8 @@ class TitleCardReserveWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final reserverController = context.watch<ReserveController>(); // Provider
+
     return Container(
       margin: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -112,8 +116,8 @@ class TitleCardReserveWidget extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          ReserveService()
-                              .deleteReserveById(reserve.idReserve!);
+                          reserverController.deleteReserveById(
+                              reserve.idReserve!, reserve);
                           Navigator.pop(context);
                         },
                         child: const Text('Sim'),
