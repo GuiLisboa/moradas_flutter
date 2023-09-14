@@ -23,7 +23,7 @@ class UserService {
 
     try {
       var url = '$API/user/CreateUser';
-      var response = await _dio.post(url, data: currentUser.toJson());
+      await _dio.post(url, data: currentUser.toJson());
       MessageService().success("Usuário cadastrado com sucesso!");
 
       Navigator.of(context).pop();

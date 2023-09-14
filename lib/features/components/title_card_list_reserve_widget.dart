@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
 import 'package:moradas/models/reserve_model.dart';
 import 'package:provider/provider.dart';
-
 import '../controller/reserve_controller.dart';
 
 class TitleCardReserveWidget extends StatelessWidget {

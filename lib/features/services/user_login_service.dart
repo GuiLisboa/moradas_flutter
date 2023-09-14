@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import '../../constants.dart';
 import '../../models/user_login_model.dart';
 import '../../models/user_model.dart';

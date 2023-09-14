@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
-
 import 'package:provider/provider.dart';
-
 import '../../models/reserve_location_model.dart';
 import '../../models/reserve_model.dart';
 import '../components/title_card_list_reserve_location_widget.dart';

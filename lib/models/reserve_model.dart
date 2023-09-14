@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:moradas/models/reserve_location_model.dart';
 
 class Reserve {
   int? idReserve;

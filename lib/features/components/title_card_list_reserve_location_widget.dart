@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
 import 'package:moradas/models/user_model.dart';
 import 'package:provider/provider.dart';
-
 import '../../models/reserve_location_model.dart';
-import '../../models/reserve_model.dart';
 import '../controller/reserve_controller.dart';
 
 class TitleCardReserveLocationWidget extends StatelessWidget {

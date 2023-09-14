@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:moradas/features/services/user_login_service.dart';
-import 'package:moradas/features/services/user_service.dart';
 import 'package:moradas/models/user_login_model.dart';
 import 'package:moradas/models/user_model.dart';
-
 import '../../constants.dart';
 import '../admin/create_user_page.dart';
 

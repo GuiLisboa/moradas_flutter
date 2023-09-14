@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:moradas/features/components/title_card_initial_widget.dart';
 
 class Initialpage extends StatelessWidget {

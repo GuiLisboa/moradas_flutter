@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:moradas/features/services/message_service.dart';
-
 import '../../constants.dart';
 import '../../models/ticket_model.dart';
 import '../../models/ticket_type_model.dart';

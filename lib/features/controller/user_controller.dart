@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/features/services/user_service.dart';
-
 import '../../models/user_model.dart';
 
 class UserController extends ChangeNotifier {

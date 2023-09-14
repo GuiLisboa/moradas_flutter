@@ -10,7 +10,6 @@ import 'package:moradas/models/user_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/ticket_model.dart';
-import '../services/ticket_service.dart';
 
 class TicketPage extends StatefulWidget {
   const TicketPage({super.key});

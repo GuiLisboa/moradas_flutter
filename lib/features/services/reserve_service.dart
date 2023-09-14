@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:moradas/models/reserve_location_model.dart';
 import 'package:moradas/models/reserve_model.dart';
-
 import '../../constants.dart';
 import 'message_service.dart';
 

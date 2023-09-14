@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:moradas/constants.dart';
 import 'package:moradas/features/controller/user_controller.dart';
-
-import 'package:moradas/features/services/user_service.dart';
 import 'package:provider/provider.dart';
 import '../../models/user_model.dart';
 

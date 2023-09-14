@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
-import 'package:moradas/features/admin/list_user_page.dart';
 import 'package:moradas/features/controller/user_controller.dart';
-import 'package:moradas/features/services/user_service.dart';
 import 'package:moradas/models/user_model.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +31,7 @@ class TitleCardUserWidget extends StatelessWidget {
       child: ListTile(
         leading: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           user.isAdmin! == 1
-              ? CircleAvatar(radius: 19, child: Text('ADM'))
+              ? const CircleAvatar(radius: 19, child: Text('ADM'))
               : Icon(leftIcon, color: iconColor, size: 30)
         ]),
         title: Text(user.fullName!,
@@ -126,9 +124,8 @@ class TitleCardUserWidget extends StatelessWidget {
                                 children: <Widget>[
                                   TextFormField(
                                     initialValue: user.fullName,
-                                    decoration: InputDecoration(
-                                      labelText: 'Nome',
-                                    ),
+                                    decoration:
+                                        InputDecoration(labelText: 'Nome'),
                                     onChanged: (value) {
                                       user.fullName = value;
                                     },
@@ -149,9 +146,8 @@ class TitleCardUserWidget extends StatelessWidget {
                                   ),
                                   TextFormField(
                                     initialValue: user.email,
-                                    decoration: InputDecoration(
-                                      labelText: 'Email',
-                                    ),
+                                    decoration:
+                                        InputDecoration(labelText: 'Email'),
                                     onChanged: (value) {
                                       user.email = value;
                                     },
@@ -159,9 +155,8 @@ class TitleCardUserWidget extends StatelessWidget {
                                   ),
                                   TextFormField(
                                     initialValue: user.tower,
-                                    decoration: InputDecoration(
-                                      labelText: 'Torre',
-                                    ),
+                                    decoration:
+                                        InputDecoration(labelText: 'Torre'),
                                     onChanged: (value) {
                                       user.tower = value;
                                     },
@@ -170,8 +165,7 @@ class TitleCardUserWidget extends StatelessWidget {
                                   TextFormField(
                                     initialValue: user.apartment,
                                     decoration: InputDecoration(
-                                      labelText: 'Apartamento',
-                                    ),
+                                        labelText: 'Apartamento'),
                                     onChanged: (value) {
                                       user.apartment = value;
                                     },

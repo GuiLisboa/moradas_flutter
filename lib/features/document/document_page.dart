@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
-
 import 'package:moradas/features/components/title_card_document_widget.dart';
 
 class DocumentPage extends StatelessWidget {

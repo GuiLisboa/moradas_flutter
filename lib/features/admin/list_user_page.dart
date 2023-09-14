@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
-import 'package:moradas/features/services/user_service.dart';
 import 'package:provider/provider.dart';
-
 import '../components/title_card_list_user_widget.dart';
-
 import '../../models/user_model.dart';
 import '../controller/user_controller.dart';
 

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/features/admin/list_user_page.dart';
 import 'package:moradas/features/controller/ticket_controller.dart';
-
 import 'package:provider/provider.dart';
-
 import 'features/admin/create_user_page.dart';
 import 'features/controller/reserve_controller.dart';
 import 'features/controller/user_controller.dart';
