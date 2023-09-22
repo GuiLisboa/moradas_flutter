@@ -71,10 +71,13 @@ class TitleCardTicketWidget extends StatelessWidget {
             ),
             Row(
               children: [
-                // Text('Descrição: ',
-                //     style: const TextStyle(
-                //         fontSize: 18, color: Color(colorBlueSimple))),
-                Text(ticket.ticketDescription!.substring(0, 20) + "...",
+                Text(
+                    ticket.ticketDescription!.substring(
+                            0,
+                            ticket.ticketDescription!.length > 20
+                                ? 20
+                                : ticket.ticketDescription!.length) +
+                        "...",
                     style: const TextStyle(
                         fontSize: 18,
                         color: Color(colorBlueSimple),

@@ -26,10 +26,14 @@ class _ReservePageState extends State<ReservePage>
   List<ReserveLocation> locationsReserve = [];
   List<Reserve> reserves = [];
 
+  void update() {
+    Provider.of<ReserveController>(context, listen: false).getLocations();
+  }
+
   @override
   void initState() {
     super.initState();
-    Provider.of<ReserveController>(context, listen: false).getLocations();
+    update();
     _controller = TabController(length: tabs.length, vsync: this);
   }
 

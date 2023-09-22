@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:moradas/models/reserve_location_model.dart';
 import 'package:moradas/models/reserve_model.dart';
 import '../../constants.dart';
+import '../../models/rent_model.dart';
 import 'message_service.dart';
 
 class ReserveService {
@@ -96,12 +97,12 @@ class ReserveService {
     }
   }
 
-  Future addNewReserve(Reserve reserve) async {
+  Future addNewReserve(Rent rent) async {
     fToast = FToast();
 
     try {
-      var url = '$API/reserve/createNewReserve';
-      await _dio.post(url, data: reserve.toJson());
+      var url = '$API/rent/createNewRent';
+      await _dio.post(url, data: rent.toJson());
 
       MessageService().success("Reserva cadastrada com sucesso!");
     } on DioError catch (e) {

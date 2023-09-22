@@ -3,13 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
 import 'package:moradas/models/user_model.dart';
 import 'package:provider/provider.dart';
+import '../../models/rent_model.dart';
 import '../../models/reserve_location_model.dart';
+import '../../models/reserve_model.dart';
 import '../controller/reserve_controller.dart';
 
 class TitleCardReserveLocationWidget extends StatelessWidget {
   final IconData leftIcon;
   final Color iconColor;
   ReserveLocation reserveLocation = ReserveLocation();
+  Reserve reserve = Reserve();
+  Rent rent = Rent();
 
   TitleCardReserveLocationWidget({
     Key? key,
@@ -27,134 +31,152 @@ class TitleCardReserveLocationWidget extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10), color: Colors.white54),
       child: ListTile(
-          leading:
-              Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Icon(
-              leftIcon,
-              color: iconColor,
-              size: 30,
-            )
-          ]),
-          title: Text(reserveLocation.title!,
-              style:
-                  const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          subtitle: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+        leading: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Icon(
+            leftIcon,
+            color: iconColor,
+            size: 30,
+          )
+        ]),
+        title: Text(reserveLocation.title!,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Text('Taxa de uso: ',
+                    style: const TextStyle(
+                        fontSize: 18, color: Color(colorBlueSimple))),
+                Text('R\$${reserveLocation.usageFee!},00',
+                    style: const TextStyle(
+                        fontSize: 18,
+                        color: Color(colorBlueSimple),
+                        fontWeight: FontWeight.bold)),
+              ],
+            ),
+            Row(
+              children: [
+                Text('Capacidade: ',
+                    style: const TextStyle(
+                        fontSize: 18, color: Color(colorBlueSimple))),
+                Text('${reserveLocation.capacity!} pessoas',
+                    style: const TextStyle(
+                        fontSize: 18,
+                        color: Color(colorBlueSimple),
+                        fontWeight: FontWeight.bold)),
+              ],
+            ),
+          ],
+        ),
+        trailing: PopupMenuButton(
+          color: Color(colorBlueSimple),
+          icon: Icon(Icons.more_vert, color: iconColor, size: 30),
+          itemBuilder: (context) => [
+            PopupMenuItem<int>(
+              value: 0,
+              enabled: globalUserLoged!.isAdmin! == 1 ? true : false,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Taxa de uso: ',
-                      style: const TextStyle(
-                          fontSize: 18, color: Color(colorBlueSimple))),
-                  Text('R\$${reserveLocation.usageFee!},00',
-                      style: const TextStyle(
-                          fontSize: 18,
-                          color: Color(colorBlueSimple),
-                          fontWeight: FontWeight.bold)),
+                  Text(
+                    "Desativar Espaço",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Icon(Icons.hide_source)
                 ],
               ),
-              Row(
+            ),
+            PopupMenuItem<int>(
+              value: 1,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Capacidade: ',
-                      style: const TextStyle(
-                          fontSize: 18, color: Color(colorBlueSimple))),
-                  Text('${reserveLocation.capacity!} pessoas',
-                      style: const TextStyle(
-                          fontSize: 18,
-                          color: Color(colorBlueSimple),
-                          fontWeight: FontWeight.bold)),
+                  Text(
+                    "Agendar Espaço",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Icon(Icons.schedule)
                 ],
               ),
-            ],
-          ),
-          trailing: (() {
-            if (globalUserLoged!.isAdmin! == 1) {
-              return PopupMenuButton(
-                color: Color(colorBlueSimple),
-                icon: Icon(Icons.more_vert, color: iconColor, size: 30),
-                itemBuilder: (context) => [
-                  PopupMenuItem<int>(
-                    value: 0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Desativar Espaço",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        Icon(Icons.hide_source)
-                      ],
-                    ),
+            ),
+          ],
+          onSelected: (item) => {
+            if (item == 0)
+              {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    title: const Text('Desativar Espaço'),
+                    content: const Text(
+                        'Tem certeza que deseja Desativar este espaço?'),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'Não'),
+                        child: const Text('Não'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          reserveController.disableReserveLocationById(
+                              reserveLocation.idReserveLocation!,
+                              reserveLocation);
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Sim'),
+                      ),
+                    ],
                   ),
-                  PopupMenuItem<int>(
-                    value: 1,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Excluir",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        Icon(Icons.schedule)
-                      ],
-                    ),
+                )
+              }
+            else if (item == 1)
+              {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    title: const Text('Agendar Espaço'),
+                    content:
+                        const Text('Tem certeza que deseja Agendar o Espaço?'),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'Não'),
+                        child: const Text('Não'),
+                      ),
+                      TextButton(
+                        onPressed: () async {
+                          DateTime? pickeddate = await showDatePicker(
+                              context: context,
+                              selectableDayPredicate: (DateTime val) =>
+                                  val.day == 23 || val.day == 24 ? false : true,
+                              initialDate: DateTime.now(),
+                              firstDate:
+                                  DateTime.now().subtract(Duration(days: 1)),
+                              lastDate: DateTime.now()
+                                  .add(const Duration(days: 365)));
+
+                          if (pickeddate != null) {
+                            rent.idMorador = globalUserLoged!.idMorador;
+                            rent.idReserveLocation =
+                                reserveLocation.idReserveLocation;
+                            rent.dateRent = pickeddate.toString();
+                            reserve.title = reserveLocation.title;
+                            reserve.usageFee = reserveLocation.usageFee;
+                            reserve.capacity = reserveLocation.capacity;
+                            reserve.dateReserve = pickeddate.toString();
+                            reserveController.addNewReserve(rent, reserve);
+                            Navigator.pop(context);
+                          } else {
+                            Navigator.pop(context);
+                          }
+                        },
+                        child: const Text('Sim'),
+                      ),
+                    ],
                   ),
-                ],
-                onSelected: (item) => {
-                  if (item == 0)
-                    {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) => AlertDialog(
-                          title: const Text('Desativar Espaço'),
-                          content: const Text(
-                              'Tem certeza que deseja Desativar este espaço?'),
-                          actions: <Widget>[
-                            TextButton(
-                              onPressed: () => Navigator.pop(context, 'Não'),
-                              child: const Text('Não'),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                reserveController.disableReserveLocationById(
-                                    reserveLocation.idReserveLocation!,
-                                    reserveLocation);
-                                Navigator.pop(context);
-                              },
-                              child: const Text('Sim'),
-                            ),
-                          ],
-                        ),
-                      )
-                    }
-                  else if (item == 1)
-                    {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) => AlertDialog(
-                          title: const Text('Agendar Espaço'),
-                          content: const Text(
-                              'Tem certeza que deseja Agendar o Espaço?'),
-                          actions: <Widget>[
-                            TextButton(
-                              onPressed: () => Navigator.pop(context, 'Não'),
-                              child: const Text('Não'),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                //reserveController.addNewReserve();
-                                Navigator.pop(context);
-                              },
-                              child: const Text('Sim'),
-                            ),
-                          ],
-                        ),
-                      )
-                    }
-                },
-              );
-            }
-          }())),
+                )
+              }
+          },
+        ),
+      ),
     );
   }
 }

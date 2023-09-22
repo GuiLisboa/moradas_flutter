@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/features/services/reserve_service.dart';
+import 'package:moradas/models/rent_model.dart';
 import '../../models/reserve_location_model.dart';
 import '../../models/reserve_model.dart';
 import '../../models/user_model.dart';
@@ -38,9 +39,9 @@ class ReserveController extends ChangeNotifier {
     notifyListeners();
   }
 
-  addNewReserve(Reserve currentReserve) async {
-    await reserveService.addNewReserve(currentReserve);
-    reserves.add(currentReserve);
+  addNewReserve(Rent rent, Reserve reserve) async {
+    await reserveService.addNewReserve(rent);
+    reserves.add(reserve);
     notifyListeners();
   }
 
