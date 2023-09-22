@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/features/admin/list_user_page.dart';
+import 'package:moradas/features/controller/notice_controller.dart';
 import 'package:moradas/features/controller/ticket_controller.dart';
 import 'package:provider/provider.dart';
 import 'features/admin/create_user_page.dart';
 import 'features/controller/reserve_controller.dart';
 import 'features/controller/user_controller.dart';
-import 'features/homePage/home_page.dart';
-import 'features/login/login_page.dart';
+import 'pages/homePage/home_page.dart';
+import 'pages/login/login_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ReserveController()),
         ChangeNotifierProvider(create: (context) => UserController()),
         ChangeNotifierProvider(create: (context) => TicketController()),
+        ChangeNotifierProvider(create: (create) => NoticeController()),
       ],
       child: MaterialApp(
         title: 'Moradas',

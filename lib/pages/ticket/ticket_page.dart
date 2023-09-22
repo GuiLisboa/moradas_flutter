@@ -2,13 +2,11 @@ import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:moradas/constants.dart';
-
 import 'package:moradas/features/components/title_card_list_ticket_widget.dart';
 import 'package:moradas/features/controller/ticket_controller.dart';
 import 'package:moradas/models/ticket_type_model.dart';
 import 'package:moradas/models/user_model.dart';
 import 'package:provider/provider.dart';
-
 import '../../models/ticket_model.dart';
 
 class TicketPage extends StatefulWidget {

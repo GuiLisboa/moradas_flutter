@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
 import 'package:moradas/features/components/drawer_widget.dart';
-import 'package:moradas/features/document/document_page.dart';
-import 'package:moradas/features/reserve/reserve_page.dart';
-import 'package:moradas/features/ticket/ticket_page.dart';
+import 'package:moradas/pages/document/document_page.dart';
+import 'package:moradas/pages/reserve/reserve_page.dart';
+import 'package:moradas/pages/ticket/ticket_page.dart';
 import '../homePage/initial_page.dart';
 
 class HomePage extends StatefulWidget {

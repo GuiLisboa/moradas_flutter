@@ -4,7 +4,7 @@ import 'package:moradas/features/services/user_login_service.dart';
 import 'package:moradas/models/user_login_model.dart';
 import 'package:moradas/models/user_model.dart';
 import '../../constants.dart';
-import '../admin/create_user_page.dart';
+import '../../features/admin/create_user_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

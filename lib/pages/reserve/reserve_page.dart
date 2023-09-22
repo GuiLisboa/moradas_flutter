@@ -3,9 +3,9 @@ import 'package:moradas/constants.dart';
 import 'package:provider/provider.dart';
 import '../../models/reserve_location_model.dart';
 import '../../models/reserve_model.dart';
-import '../components/title_card_list_reserve_location_widget.dart';
-import '../components/title_card_list_reserve_widget.dart';
-import '../controller/reserve_controller.dart';
+import '../../features/components/title_card_list_reserve_location_widget.dart';
+import '../../features/components/title_card_list_reserve_widget.dart';
+import '../../features/controller/reserve_controller.dart';
 
 class ReservePage extends StatefulWidget {
   const ReservePage({super.key});
