@@ -1,16 +1,18 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:moradas/features/components/title_card_initial_list_widget.dart';
+import 'package:moradas/features/components/title_card_initial_notice_list_widget.dart';
+import 'package:moradas/features/components/title_card_initial_ticket_list_widget.dart';
+import 'package:moradas/features/controller/ticket_controller.dart';
 import 'package:provider/provider.dart';
 
 import '../controller/notice_controller.dart';
 
-class TitleCardInitialWidget extends StatelessWidget {
+class TitleCardInitialTicketWidget extends StatelessWidget {
   final IconData leftIcon;
   final String titleCard;
   final Color iconColor;
 
-  const TitleCardInitialWidget({
+  const TitleCardInitialTicketWidget({
     super.key,
     required this.leftIcon,
     required this.titleCard,
@@ -19,7 +21,7 @@ class TitleCardInitialWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final noticeController = context.watch<NoticeController>();
+    final ticketController = context.watch<TicketController>();
 
     return Container(
       margin: const EdgeInsets.all(20),
@@ -46,22 +48,19 @@ class TitleCardInitialWidget extends StatelessWidget {
                   )),
             ],
           ),
-          // for (var notice in noticeController.notices)
-          //   TitleCardInitialListWidget(
-          //     title: notice.title!,
-          //     description: notice.noticedescription!,
-          //     date: notice.startdate!,
-          //   ),
-          ListView(
-            shrinkWrap: true,
-            children: [
-              for (var notice in noticeController.notices)
-                TitleCardInitialListWidget(
-                  title: notice.title!,
-                  description: notice.noticedescription!,
-                  date: notice.startdate!,
-                ),
-            ],
+          Expanded(
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                for (var ticket in ticketController.tickets)
+                  if (ticket.status == 'Aberto')
+                    TitleCardInitialTicketListWidget(
+                      title: ticket.ticketDescription!,
+                      description: ticket.ticketLocalDescription!,
+                      status: ticket.status!,
+                    ),
+              ],
+            ),
           ),
         ],
       ),
