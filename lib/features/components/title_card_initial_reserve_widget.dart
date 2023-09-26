@@ -4,8 +4,6 @@ import 'package:moradas/features/components/title_card_initial_reserve_list_widg
 import 'package:moradas/features/controller/reserve_controller.dart';
 import 'package:provider/provider.dart';
 
-import '../controller/notice_controller.dart';
-
 class TitleCardInitialReserveWidget extends StatelessWidget {
   final IconData leftIcon;
   final String titleCard;
@@ -47,19 +45,34 @@ class TitleCardInitialReserveWidget extends StatelessWidget {
                   )),
             ],
           ),
-          Expanded(
-            child: ListView(
-              shrinkWrap: true,
-              children: [
-                for (var reserves in reserveController.reserves)
-                  TitleCardInitialReserveListWidget(
-                    title: reserves.title!,
-                    capacity: reserves.capacity!,
-                    date: reserves.dateReserve!,
+          (() {
+            if (reserveController.reserves.isEmpty) {
+              return const Center(
+                heightFactor: 5,
+                child: Text(
+                  'Nenhuma reserva no seu nome.',
+                  style: TextStyle(
+                    fontSize: 20,
+                    letterSpacing: 1.5,
                   ),
-              ],
-            ),
-          ),
+                ),
+              );
+            } else {
+              return Expanded(
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    for (var reserves in reserveController.reserves)
+                      TitleCardInitialReserveListWidget(
+                        title: reserves.title!,
+                        capacity: reserves.capacity!,
+                        date: reserves.dateReserve!,
+                      ),
+                  ],
+                ),
+              );
+            }
+          }()),
         ],
       ),
     );

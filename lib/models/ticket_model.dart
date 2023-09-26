@@ -27,6 +27,7 @@ class Ticket {
     ticketLocalDescription = json['localOcorrencia'];
     status = json['statusOcorrencia'];
     createdOn = json['createdOn'];
+    idMorador = json['morador_idMorador'];
   }
 
   Map<String, dynamic> toJson() {

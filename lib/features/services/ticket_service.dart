@@ -99,4 +99,33 @@ class TicketService {
       return [];
     }
   }
+
+  Future updateTicket(int id, Ticket currentTicket) async {
+    try {
+      var url = '$API/ticket/updateTicketStatus/$id';
+      await _dio.put(url, data: currentTicket.toJson());
+      print(currentTicket.toJson());
+
+      MessageService().success("Ticket atualizado com sucesso!");
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.connectTimeout) {
+        MessageService().errorTimeOut("Erro ao comunicar com o servidor!");
+      }
+      MessageService().errorFail("Erro ao atualizar ticket!");
+    }
+  }
+
+  Future deleteTicket(int id) async {
+    try {
+      var url = '$API/ticket/deleteById/$id';
+      await _dio.delete(url);
+
+      MessageService().success("Ticket deletado com sucesso!");
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.connectTimeout) {
+        MessageService().errorTimeOut("Erro ao comunicar com o servidor!");
+      }
+      MessageService().errorFail("Erro ao deletar ticket!");
+    }
+  }
 }

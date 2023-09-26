@@ -5,14 +5,15 @@ import '../../constants.dart';
 class TitleCardInitialNoticeListWidget extends StatelessWidget {
   final String title;
   final String description;
-  final String date;
+  final String startDate;
+  final String endDate;
 
-  const TitleCardInitialNoticeListWidget({
-    super.key,
-    required this.title,
-    required this.description,
-    required this.date,
-  });
+  const TitleCardInitialNoticeListWidget(
+      {super.key,
+      required this.title,
+      required this.description,
+      required this.startDate,
+      required this.endDate});
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +30,9 @@ class TitleCardInitialNoticeListWidget extends StatelessWidget {
                 color: Colors.grey,
                 size: 20,
               ),
-              Text('Aviso: ',
-                  style: const TextStyle(
-                      fontSize: 18, color: Color(colorBlueSimple))),
+              const Text('Aviso: ',
+                  style:
+                      TextStyle(fontSize: 18, color: Color(colorBlueSimple))),
               Text(title!,
                   style: const TextStyle(
                       fontSize: 18,
@@ -41,9 +42,9 @@ class TitleCardInitialNoticeListWidget extends StatelessWidget {
           ),
           Row(
             children: [
-              Text('Descrição: ',
-                  style: const TextStyle(
-                      fontSize: 18, color: Color(colorBlueSimple))),
+              const Text('Descrição: ',
+                  style:
+                      TextStyle(fontSize: 18, color: Color(colorBlueSimple))),
               Text(description!,
                   style: const TextStyle(
                       fontSize: 18,
@@ -53,23 +54,38 @@ class TitleCardInitialNoticeListWidget extends StatelessWidget {
           ),
           Row(
             children: [
-              Text('Data Início: ',
-                  style: const TextStyle(
-                      fontSize: 18, color: Color(colorBlueSimple))),
+              const Text('Início: ',
+                  style:
+                      TextStyle(fontSize: 18, color: Color(colorBlueSimple))),
               (() {
-                if (date!.length > 20) {
+                if (startDate!.length > 20) {
                   return Text(
-                      (date!.substring(8, 10) +
-                          "/" +
-                          date!.substring(5, 7) +
-                          "/" +
-                          date!.substring(0, 4)),
+                      ("${startDate.substring(8, 10)}/${startDate.substring(5, 7)}/${startDate.substring(0, 4) + "    "}"),
                       style: const TextStyle(
                           fontSize: 18,
                           color: Color(colorBlueSimple),
                           fontWeight: FontWeight.bold));
                 } else {
-                  return Text(date!,
+                  return Text(startDate!,
+                      style: const TextStyle(
+                          fontSize: 18,
+                          color: Color(colorBlueSimple),
+                          fontWeight: FontWeight.bold));
+                }
+              }()),
+              const Text('Fim: ',
+                  style:
+                      TextStyle(fontSize: 18, color: Color(colorBlueSimple))),
+              (() {
+                if (endDate!.length > 20) {
+                  return Text(
+                      ("${endDate.substring(8, 10)}/${endDate.substring(5, 7)}/${endDate.substring(0, 4)}"),
+                      style: const TextStyle(
+                          fontSize: 18,
+                          color: Color(colorBlueSimple),
+                          fontWeight: FontWeight.bold));
+                } else {
+                  return Text(endDate!,
                       style: const TextStyle(
                           fontSize: 18,
                           color: Color(colorBlueSimple),

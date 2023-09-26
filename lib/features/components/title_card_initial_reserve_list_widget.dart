@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../constants.dart';
 
 class TitleCardInitialReserveListWidget extends StatelessWidget {
@@ -29,9 +28,9 @@ class TitleCardInitialReserveListWidget extends StatelessWidget {
                 color: Colors.grey,
                 size: 20,
               ),
-              Text('Local: ',
-                  style: const TextStyle(
-                      fontSize: 18, color: Color(colorBlueSimple))),
+              const Text('Local: ',
+                  style:
+                      TextStyle(fontSize: 18, color: Color(colorBlueSimple))),
               Text(title!,
                   style: const TextStyle(
                       fontSize: 18,
@@ -41,9 +40,9 @@ class TitleCardInitialReserveListWidget extends StatelessWidget {
           ),
           Row(
             children: [
-              Text('Capacidade: ',
-                  style: const TextStyle(
-                      fontSize: 18, color: Color(colorBlueSimple))),
+              const Text('Capacidade: ',
+                  style:
+                      TextStyle(fontSize: 18, color: Color(colorBlueSimple))),
               Text('${capacity!} pessoas',
                   style: const TextStyle(
                       fontSize: 18,
@@ -53,23 +52,19 @@ class TitleCardInitialReserveListWidget extends StatelessWidget {
           ),
           Row(
             children: [
-              Text('Data Abertura: ',
-                  style: const TextStyle(
-                      fontSize: 18, color: Color(colorBlueSimple))),
+              const Text('Data Abertura: ',
+                  style:
+                      TextStyle(fontSize: 18, color: Color(colorBlueSimple))),
               (() {
                 if (date!.length > 20) {
                   return Text(
-                      (date!.substring(8, 10) +
-                          "/" +
-                          date!.substring(5, 7) +
-                          "/" +
-                          date!.substring(0, 4)),
+                      ("${date.substring(8, 10)}/${date.substring(5, 7)}/${date.substring(0, 4)}"),
                       style: const TextStyle(
                           fontSize: 18,
                           color: Color(colorBlueSimple),
                           fontWeight: FontWeight.bold));
                 } else {
-                  return Text(date!,
+                  return Text(date,
                       style: const TextStyle(
                           fontSize: 18,
                           color: Color(colorBlueSimple),

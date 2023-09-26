@@ -116,32 +116,32 @@ class LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildRememberMeCheckbox() {
-    return SizedBox(
-      height: 20.0,
-      child: Row(
-        children: <Widget>[
-          Theme(
-            data: ThemeData(unselectedWidgetColor: Colors.white),
-            child: Checkbox(
-              value: _rememberMe,
-              checkColor: Colors.green,
-              activeColor: Colors.white,
-              onChanged: (value) {
-                setState(() {
-                  _rememberMe = value!;
-                });
-              },
-            ),
-          ),
-          const Text(
-            'Lembrar de mim',
-            style: kLabelStyle,
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _buildRememberMeCheckbox() {
+  //   return SizedBox(
+  //     height: 20.0,
+  //     child: Row(
+  //       children: <Widget>[
+  //         Theme(
+  //           data: ThemeData(unselectedWidgetColor: Colors.white),
+  //           child: Checkbox(
+  //             value: _rememberMe,
+  //             checkColor: Colors.green,
+  //             activeColor: Colors.white,
+  //             onChanged: (value) {
+  //               setState(() {
+  //                 _rememberMe = value!;
+  //               });
+  //             },
+  //           ),
+  //         ),
+  //         const Text(
+  //           'Lembrar de mim',
+  //           style: kLabelStyle,
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget _buildLoginBtn() {
     return Container(
@@ -323,7 +323,7 @@ class LoginPageState extends State<LoginPage> {
                       ),
                       _buildPasswordTF(),
                       _buildForgotPasswordBtn(),
-                      _buildRememberMeCheckbox(),
+                      //_buildRememberMeCheckbox(),
                       _buildLoginBtn(),
                       _buildSignInWithText(),
                       // _buildSocialBtnRow(),

@@ -48,20 +48,35 @@ class TitleCardInitialTicketWidget extends StatelessWidget {
                   )),
             ],
           ),
-          Expanded(
-            child: ListView(
-              shrinkWrap: true,
-              children: [
-                for (var ticket in ticketController.tickets)
-                  if (ticket.status == 'Aberto')
-                    TitleCardInitialTicketListWidget(
-                      title: ticket.ticketDescription!,
-                      description: ticket.ticketLocalDescription!,
-                      status: ticket.status!,
-                    ),
-              ],
-            ),
-          ),
+          (() {
+            if (ticketController.tickets.isEmpty) {
+              return const Center(
+                heightFactor: 5,
+                child: Text(
+                  'Nenhuma ocorrência no momento.',
+                  style: TextStyle(
+                    fontSize: 20,
+                    letterSpacing: 1.5,
+                  ),
+                ),
+              );
+            } else {
+              return Expanded(
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    for (var ticket in ticketController.tickets)
+                      if (ticket.status == 'Aberto')
+                        TitleCardInitialTicketListWidget(
+                          title: ticket.ticketDescription!,
+                          description: ticket.ticketLocalDescription!,
+                          status: ticket.status!,
+                        ),
+                  ],
+                ),
+              );
+            }
+          }()),
         ],
       ),
     );

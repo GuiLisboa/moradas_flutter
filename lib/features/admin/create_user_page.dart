@@ -294,18 +294,25 @@ class _CreateUserPageState extends State<CreateUserPage> {
                     ),
                   ),
                 ),
-                Container(
-                    child: CheckboxListTile(
-                  title: Text("Administrador?"),
-                  controlAffinity: ListTileControlAffinity.leading,
-                  value: user.isAdmin == 1 ? true : false,
-                  onChanged: (newValue) {
-                    setState(() {
-                      user.isAdmin = newValue! ? 1 : 0;
-                    });
-                  },
-                  activeColor: Colors.green,
-                )),
+                (() {
+                  if (globalUserLoged?.isAdmin == null) {
+                    return Container();
+                  } else {
+                    return Container(
+                      child: CheckboxListTile(
+                        title: Text("Administrador?"),
+                        controlAffinity: ListTileControlAffinity.leading,
+                        value: user.isAdmin == 1 ? true : false,
+                        onChanged: (newValue) {
+                          setState(() {
+                            user.isAdmin = newValue! ? 1 : 0;
+                          });
+                        },
+                        activeColor: Colors.green,
+                      ),
+                    );
+                  }
+                }()),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     textStyle: TextStyle(fontSize: 24),

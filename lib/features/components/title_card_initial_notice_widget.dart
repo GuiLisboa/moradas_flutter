@@ -46,19 +46,35 @@ class TitleCardInitialNoticeWidget extends StatelessWidget {
                   )),
             ],
           ),
-          Expanded(
-            child: ListView(
-              shrinkWrap: true,
-              children: [
-                for (var notice in noticeController.notices)
-                  TitleCardInitialNoticeListWidget(
-                    title: notice.title!,
-                    description: notice.noticedescription!,
-                    date: notice.startdate!,
+          (() {
+            if (noticeController.notices.isEmpty) {
+              return const Center(
+                heightFactor: 5,
+                child: Text(
+                  'Nenhum aviso no momento.',
+                  style: TextStyle(
+                    fontSize: 20,
+                    letterSpacing: 1.5,
                   ),
-              ],
-            ),
-          ),
+                ),
+              );
+            } else {
+              return Expanded(
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    for (var notice in noticeController.notices)
+                      TitleCardInitialNoticeListWidget(
+                        title: notice.title!,
+                        description: notice.noticedescription!,
+                        startDate: notice.startdate!,
+                        endDate: notice.enddate!,
+                      )
+                  ],
+                ),
+              );
+            }
+          }()),
         ],
       ),
     );
