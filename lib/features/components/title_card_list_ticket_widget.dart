@@ -193,6 +193,7 @@ class TitleCardTicketWidget extends StatelessWidget {
           itemBuilder: (context) => [
             PopupMenuItem<int>(
               value: 0,
+              enabled: globalUserLoged!.isAdmin! == 1 ? true : false,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -206,6 +207,7 @@ class TitleCardTicketWidget extends StatelessWidget {
             ),
             PopupMenuItem<int>(
               value: 1,
+              enabled: globalUserLoged!.isAdmin! == 1 ? true : false,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

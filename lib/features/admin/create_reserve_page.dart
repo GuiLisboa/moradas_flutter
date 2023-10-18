@@ -101,30 +101,30 @@ class _CreateReservePageState extends State<CreateReservePage> {
                 ),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(15),
-              child: SizedBox(
-                child: Flex(
-                  direction: Axis.vertical,
-                  children: [
-                    TextFormField(
-                      controller: null,
-                      decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Escolha um Ícone.',
-                          fillColor: Colors.white,
-                          filled: true,
-                          suffixIcon: Icon(
-                            Icons.add_reaction,
-                          )),
-                      onChanged: (text) {
-                        reserveLocation.leftIcon = text;
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            // Container(
+            //   padding: const EdgeInsets.all(15),
+            //   child: SizedBox(
+            //     child: Flex(
+            //       direction: Axis.vertical,
+            //       children: [
+            //         TextFormField(
+            //           controller: null,
+            //           decoration: const InputDecoration(
+            //               border: OutlineInputBorder(),
+            //               labelText: 'Escolha um Ícone.',
+            //               fillColor: Colors.white,
+            //               filled: true,
+            //               suffixIcon: Icon(
+            //                 Icons.add_reaction,
+            //               )),
+            //           onChanged: (text) {
+            //             reserveLocation.leftIcon = text;
+            //           },
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
             Container(
                 child: CheckboxListTile(
               title: Text("Ativo?"),

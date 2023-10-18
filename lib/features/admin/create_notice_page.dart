@@ -177,28 +177,28 @@ class _CreateNoticePageState extends State<CreateNoticePage> {
                 ),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(15),
-              child: SizedBox(
-                child: Flex(
-                  direction: Axis.vertical,
-                  children: [
-                    TextFormField(
-                      controller: null,
-                      decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Escolha um Ícone.',
-                          fillColor: Colors.white,
-                          filled: true,
-                          suffixIcon: Icon(
-                            Icons.add_reaction,
-                          )),
-                      onEditingComplete: () {},
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            // Container(
+            //   padding: const EdgeInsets.all(15),
+            //   child: SizedBox(
+            //     child: Flex(
+            //       direction: Axis.vertical,
+            //       children: [
+            //         TextFormField(
+            //           controller: null,
+            //           decoration: const InputDecoration(
+            //               border: OutlineInputBorder(),
+            //               labelText: 'Escolha um Ícone.',
+            //               fillColor: Colors.white,
+            //               filled: true,
+            //               suffixIcon: Icon(
+            //                 Icons.add_reaction,
+            //               )),
+            //           onEditingComplete: () {},
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 textStyle: TextStyle(fontSize: 24),

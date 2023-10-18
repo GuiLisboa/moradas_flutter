@@ -45,11 +45,16 @@ class TitleCardInitialNoticeListWidget extends StatelessWidget {
               const Text('Descrição: ',
                   style:
                       TextStyle(fontSize: 18, color: Color(colorBlueSimple))),
-              Text(description!,
+              Flexible(
+                child: Text(
+                  description!,
                   style: const TextStyle(
                       fontSize: 18,
                       color: Color(colorBlueSimple),
-                      fontWeight: FontWeight.bold)),
+                      fontWeight: FontWeight.bold),
+                  softWrap: true,
+                ),
+              ),
             ],
           ),
           Row(
@@ -66,7 +71,8 @@ class TitleCardInitialNoticeListWidget extends StatelessWidget {
                           color: Color(colorBlueSimple),
                           fontWeight: FontWeight.bold));
                 } else {
-                  return Text(startDate!,
+                  return Text(
+                      "${startDate.substring(8, 10)}/${startDate.substring(5, 7)}/${startDate.substring(0, 4) + "    "}",
                       style: const TextStyle(
                           fontSize: 18,
                           color: Color(colorBlueSimple),
@@ -85,7 +91,8 @@ class TitleCardInitialNoticeListWidget extends StatelessWidget {
                           color: Color(colorBlueSimple),
                           fontWeight: FontWeight.bold));
                 } else {
-                  return Text(endDate!,
+                  return Text(
+                      "${startDate.substring(8, 10)}/${startDate.substring(5, 7)}/${startDate.substring(0, 4) + "    "}",
                       style: const TextStyle(
                           fontSize: 18,
                           color: Color(colorBlueSimple),
