@@ -31,13 +31,24 @@ class _DocumentPageState extends State<DocumentPage> {
         title: Text('Documentos'),
         backgroundColor: Color(colorBlueSimple),
       ),
-      body: ListView.builder(
-          itemCount: documents.length,
-          itemBuilder: (context, int index) {
-            return TitleCardDocumentWidget(
-              document: documents[index],
-            );
-          }),
+      body: (() {
+        if (documents.isEmpty) {
+          return Center(
+            child: Text(
+              'Nenhum documento cadastrado.',
+              style: TextStyle(fontSize: 20),
+            ),
+          );
+        } else {
+          return ListView.builder(
+              itemCount: documents.length,
+              itemBuilder: (context, int index) {
+                return TitleCardDocumentWidget(
+                  document: documents[index],
+                );
+              });
+        }
+      }()),
     );
   }
 }
