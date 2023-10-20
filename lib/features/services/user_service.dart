@@ -43,7 +43,6 @@ class UserService {
 
       if (response.statusCode == 200) {
         var users = response.data as List;
-        debugPrint('Quantidade no service: ${users.length}');
         return users.map((user) => User.fromJson(user)).toList();
       } else {
         return [];

@@ -1,7 +1,7 @@
+import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import '../../constants.dart';
 import '../../models/document_model.dart';
 import 'message_service.dart';
@@ -56,6 +56,25 @@ class DocumentService {
       }
       print(e);
       return [];
+    }
+  }
+
+  Future addNewFile(context, String correntPath) async {
+    fToast = FToast();
+    fToast.init(context);
+
+    print("file base name:$correntPath");
+
+    try {
+      FormData formData = FormData.fromMap({
+        "file": await MultipartFile.fromFile(correntPath),
+      });
+
+      Response response = await Dio().post('$APIdoc/upload', data: formData);
+
+      print("File upload response: $response");
+    } catch (e) {
+      print("expectation Caugch: $e");
     }
   }
 }

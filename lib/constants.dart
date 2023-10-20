@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 const colorBlueSimple = 0xff607d8b;
 
 const API = 'http://10.0.2.2:8080/api';
-const APIdoc = 'http://10.0.2.2:8090/';
+const APIdoc = 'http://10.0.2.2:8090';
 
 const kHintTextStyle = TextStyle(
   color: Colors.white54,

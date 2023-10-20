@@ -16,7 +16,7 @@ class TitleCardDocumentWidget extends StatelessWidget {
       required this.document});
 
   Future<void> launchInBrowser(String nameFile) async {
-    Uri url = Uri.parse("$APIdoc" 'files/' "$nameFile");
+    Uri url = Uri.parse("$APIdoc" '/files/' "$nameFile");
     if (!await launchUrl(url)) {
       throw Exception('Could not launch $url');
     }

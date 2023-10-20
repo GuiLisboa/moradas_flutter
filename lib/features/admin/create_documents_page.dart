@@ -16,6 +16,7 @@ class CreateDocumentsPage extends StatefulWidget {
 class _CreateDocumentsPageState extends State<CreateDocumentsPage> {
   Document document = new Document();
   FilePickerResult? result;
+  String? path;
 
   TextEditingController _controllerDocumentName = TextEditingController();
 
@@ -28,6 +29,7 @@ class _CreateDocumentsPageState extends State<CreateDocumentsPage> {
         if (value != null) {
           _controllerDocumentName.text = value.files.first.name;
           document.nameFile = value.files.first.name.replaceAll(' ', '');
+          path = value.files.first.path;
         }
       });
     });
@@ -125,6 +127,7 @@ class _CreateDocumentsPageState extends State<CreateDocumentsPage> {
               child: Text('Criar Documento'),
               onPressed: () {
                 documentController.addNewDocument(context, document);
+                documentController.addNewFile(context, path!);
                 Navigator.pop(context);
               },
             ),
