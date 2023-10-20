@@ -24,8 +24,7 @@ class _ListUserPageState extends State<ListUserPage> {
   @override
   Widget build(BuildContext context) {
     final userController = context.watch<UserController>();
-    users = userController.users; // Provider
-    debugPrint('Quantidade no page: ${users.length}');
+    users = userController.users;
 
     return Scaffold(
       appBar: AppBar(

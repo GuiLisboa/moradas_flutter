@@ -1,37 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
 import 'package:moradas/features/components/title_card_document_widget.dart';
+import 'package:provider/provider.dart';
 
-class DocumentPage extends StatelessWidget {
+import '../../features/controller/document_controller.dart';
+import '../../models/document_model.dart';
+
+class DocumentPage extends StatefulWidget {
   const DocumentPage({super.key});
 
   @override
+  State<DocumentPage> createState() => _DocumentPageState();
+}
+
+class _DocumentPageState extends State<DocumentPage> {
+  List<Document> documents = [];
+
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<DocumentController>(context, listen: false).getDocuments();
+  }
+
   Widget build(BuildContext context) {
+    final documentController = context.watch<DocumentController>();
+    documents = documentController.documents;
+
     return Scaffold(
-      body: ListView(
-        children: [
-          TitleCardDocumentWidget(
-              leftIcon: Icons.description,
-              iconColor: Color(colorBlueSimple),
-              title: 'Documento ATA 12/04/2023',
-              documentdescription: 'ATA referente a reunião do...'),
-          TitleCardDocumentWidget(
-              leftIcon: Icons.group,
-              iconColor: Color(colorBlueSimple),
-              title: 'Regras de convivência',
-              documentdescription: 'Manual de regras de conviv...'),
-          TitleCardDocumentWidget(
-              leftIcon: Icons.pool,
-              iconColor: Color(colorBlueSimple),
-              title: 'Manual para uso da piscina',
-              documentdescription: 'Manual para regras do uso ...'),
-          TitleCardDocumentWidget(
-              leftIcon: Icons.outdoor_grill,
-              iconColor: Color(colorBlueSimple),
-              title: 'Manual para uso da churrasqueira',
-              documentdescription: 'Manual para regras do uso ...'),
-        ],
+      appBar: AppBar(
+        title: Text('Documentos'),
+        backgroundColor: Color(colorBlueSimple),
       ),
+      body: ListView.builder(
+          itemCount: documents.length,
+          itemBuilder: (context, int index) {
+            return TitleCardDocumentWidget(
+              document: documents[index],
+            );
+          }),
     );
   }
 }

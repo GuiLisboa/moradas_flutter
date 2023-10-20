@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moradas/features/admin/list_user_page.dart';
+import 'package:moradas/features/controller/document_controller.dart';
 import 'package:moradas/features/controller/notice_controller.dart';
 import 'package:moradas/features/controller/ticket_controller.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => UserController()),
         ChangeNotifierProvider(create: (context) => TicketController()),
         ChangeNotifierProvider(create: (create) => NoticeController()),
+        ChangeNotifierProvider(create: (create) => DocumentController()),
       ],
       child: MaterialApp(
         title: 'Moradas',

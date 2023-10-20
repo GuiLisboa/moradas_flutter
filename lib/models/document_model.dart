@@ -1,17 +1,29 @@
 import 'package:flutter/material.dart';
 
 class Document {
-  final IconData leftIcon;
-  final Color iconColor;
-  final String title;
-  final String documentdescription;
-  final String documenttype;
+  int? idDocument;
+  late String? title;
+  late String? description;
+  late String? nameFile;
 
   Document({
-    required this.leftIcon,
-    required this.iconColor,
-    required this.title,
-    required this.documentdescription,
-    required this.documenttype,
+    this.title,
+    this.description,
+    this.nameFile,
   });
+
+  Document.fromJson(Map<String, dynamic> json) {
+    idDocument = json['id'];
+    title = json['tituloDocumento'];
+    description = json['descricaoDocumento'];
+    nameFile = json['nomeDocumento'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['tituloDocumento'] = title;
+    data['descricaoDocumento'] = description;
+    data['nomeDocumento'] = nameFile;
+    return data;
+  }
 }

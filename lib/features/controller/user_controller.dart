@@ -13,7 +13,6 @@ class UserController extends ChangeNotifier {
 
   getUsers() async {
     users = await userService.getUsers();
-    debugPrint('Quantidade no controller: ${users.length}');
     notifyListeners();
   }
 
