@@ -1,8 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:moradas/constants.dart';
 import 'package:moradas/models/user_model.dart';
 import 'package:provider/provider.dart';
+import '../../models/datetimereserve_model.dart';
 import '../../models/rent_model.dart';
 import '../../models/reserve_location_model.dart';
 import '../../models/reserve_model.dart';
@@ -14,6 +14,8 @@ class TitleCardReserveLocationWidget extends StatelessWidget {
   ReserveLocation reserveLocation = ReserveLocation();
   Reserve reserve = Reserve();
   Rent rent = Rent();
+
+  List<DateTimeReserve> dates = [];
 
   TitleCardReserveLocationWidget({
     Key? key,
@@ -76,7 +78,7 @@ class TitleCardReserveLocationWidget extends StatelessWidget {
             PopupMenuItem<int>(
               value: 0,
               enabled: globalUserLoged!.isAdmin! == 1 ? true : false,
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
@@ -87,7 +89,7 @@ class TitleCardReserveLocationWidget extends StatelessWidget {
                 ],
               ),
             ),
-            PopupMenuItem<int>(
+            const PopupMenuItem<int>(
               value: 1,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -130,6 +132,8 @@ class TitleCardReserveLocationWidget extends StatelessWidget {
               }
             else if (item == 1)
               {
+                reserveController
+                    .getDateReserves(reserveLocation.idReserveLocation!),
                 showDialog(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
@@ -146,10 +150,14 @@ class TitleCardReserveLocationWidget extends StatelessWidget {
                           DateTime? pickeddate = await showDatePicker(
                               context: context,
                               selectableDayPredicate: (DateTime val) =>
-                                  val.day == 23 || val.day == 24 ? false : true,
+                                  reserveController.dates.any((element) =>
+                                          element.date!.day == val.day &&
+                                          element.date!.month == val.month &&
+                                          element.date!.year == val.year)
+                                      ? false
+                                      : true,
                               initialDate: DateTime.now(),
-                              firstDate:
-                                  DateTime.now().subtract(Duration(days: 1)),
+                              firstDate: DateTime.now(),
                               lastDate: DateTime.now()
                                   .add(const Duration(days: 365)));
 

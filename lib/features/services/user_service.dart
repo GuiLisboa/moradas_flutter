@@ -66,7 +66,8 @@ class UserService {
       if (e.type == DioErrorType.connectTimeout) {
         MessageService().errorTimeOut("Erro ao comunicar com o servidor!");
       }
-      print(e);
+      MessageService().errorFail(
+          "Erro ao excluir usuário! Talvez ele tenha reservas atreladas ao seu nome.");
     }
   }
 

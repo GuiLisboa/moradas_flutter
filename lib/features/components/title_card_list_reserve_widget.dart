@@ -11,11 +11,11 @@ class TitleCardReserveWidget extends StatelessWidget {
   Reserve reserve = Reserve();
 
   TitleCardReserveWidget({
-    Key? key,
+    super.key,
     this.leftIcon = Icons.people_alt,
     this.iconColor = const Color(colorBlueSimple),
     required this.reserve,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +81,29 @@ class TitleCardReserveWidget extends StatelessWidget {
             ),
           ],
         ),
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+              title: const Text('Reserva'),
+              content: SingleChildScrollView(
+                child: ListBody(
+                  children: <Widget>[
+                    Text("Nome: " + reserve.nameUser!),
+                    Text("Bloco: " + reserve.towerUser!),
+                    Text("Apartamento: " + reserve.apartmentUser!),
+                  ],
+                ),
+              ),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'Ok'),
+                  child: const Text('Ok'),
+                ),
+              ],
+            ),
+          );
+        },
         trailing: PopupMenuButton(
           color: Color(colorBlueSimple),
           icon: Icon(Icons.more_vert, color: iconColor, size: 30),

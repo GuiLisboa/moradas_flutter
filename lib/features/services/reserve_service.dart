@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:moradas/models/reserve_location_model.dart';
 import 'package:moradas/models/reserve_model.dart';
 import '../../constants.dart';
+import '../../models/datetimereserve_model.dart';
 import '../../models/rent_model.dart';
 import 'message_service.dart';
 
@@ -42,6 +43,28 @@ class ReserveService {
     }
   }
 
+  Future<List<Reserve>> getReserves() async {
+    try {
+      var url = '$API/reserve/findAllReserves';
+      var response = await _dio.get(url);
+      print(response.data);
+
+      if (response.statusCode == 200) {
+        var reserves = response.data as List;
+        return reserves.map((reserve) => Reserve.fromJson(reserve)).toList();
+      } else {
+        return [];
+      }
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.connectTimeout) {
+        MessageService().errorTimeOut("Erro ao comunicar com o servidor!");
+      }
+      MessageService().errorFail("Erro ao buscar espaços!");
+      print(e);
+      return [];
+    }
+  }
+
   Future<List<Reserve>> getReserveByUserId(int id) async {
     try {
       var url = '$API/reserve/findReserveByUserId/$id';
@@ -59,6 +82,28 @@ class ReserveService {
         MessageService().errorTimeOut("Erro ao comunicar com o servidor!");
       }
       MessageService().errorFail("Erro ao buscar reservas!");
+      print(e);
+      return [];
+    }
+  }
+
+  Future<List<DateTimeReserve>> getDateReserves(int idLocation) async {
+    try {
+      var url = '$API/reserve/findAllDateReserve/$idLocation';
+      var response = await _dio.get(url);
+      print(response.data);
+
+      if (response.statusCode == 200) {
+        var dates = response.data as List;
+        return dates.map((dates) => DateTimeReserve.fromJson(dates)).toList();
+      } else {
+        return [];
+      }
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.connectTimeout) {
+        MessageService().errorTimeOut("Erro ao comunicar com o servidor!");
+      }
+      MessageService().errorFail("Erro ao buscar espaços!");
       print(e);
       return [];
     }

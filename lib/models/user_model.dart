@@ -9,7 +9,6 @@ class User {
   late String? tower;
   late String? apartment;
   late String? password;
-  // late DateTime? createdOn;
   int? isAdmin;
   int? isActive;
 
@@ -22,7 +21,6 @@ class User {
     this.tower,
     this.apartment,
     this.password,
-    // this.createdOn,
     this.isAdmin = 0,
     this.isActive = 1,
   });
@@ -36,7 +34,6 @@ class User {
     tower = json['tower'];
     apartment = json['apartment'];
     password = json['password'];
-    //createdOn = json['createdOn'];
     isAdmin = int.parse(json['isAdmin']);
     isActive = int.parse(json['isActive']);
   }
@@ -51,7 +48,6 @@ class User {
     data['tower'] = tower;
     data['apartment'] = apartment;
     data['password'] = password;
-    // data['createdOn'] = createdOn;
     data['isAdmin'] = isAdmin.toString();
     data['isActive'] = isActive.toString();
     print(data);

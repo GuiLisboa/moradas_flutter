@@ -8,6 +8,9 @@ class Reserve {
   late String? usageFee;
   late String? capacity;
   late String? dateReserve;
+  String? nameUser;
+  String? towerUser;
+  String? apartmentUser;
 
   Reserve({
     this.leftIcon,
@@ -16,6 +19,9 @@ class Reserve {
     this.usageFee,
     this.capacity,
     this.dateReserve,
+    this.nameUser = '0',
+    this.towerUser = '0',
+    this.apartmentUser = '0',
   });
 
   Reserve.fromJson(Map<String, dynamic> json) {
@@ -25,6 +31,9 @@ class Reserve {
     usageFee = json['taxaUso'];
     capacity = json['capacidade'];
     dateReserve = json['dataLocacao'];
+    nameUser = json['fullName'];
+    towerUser = json['tower'];
+    apartmentUser = json['apartment'];
   }
 
   Map<String, dynamic> toJson() {
