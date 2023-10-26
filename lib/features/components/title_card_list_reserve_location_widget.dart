@@ -19,7 +19,7 @@ class TitleCardReserveLocationWidget extends StatelessWidget {
 
   TitleCardReserveLocationWidget({
     Key? key,
-    this.leftIcon = Icons.people_alt,
+    this.leftIcon = Icons.settings_accessibility,
     this.iconColor = const Color(colorBlueSimple),
     required this.reserveLocation,
   }) : super(key: key);

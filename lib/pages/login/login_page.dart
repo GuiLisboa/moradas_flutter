@@ -14,8 +14,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
-  bool _rememberMe = false;
-
   final userLoginService = new UserLoginService();
   UserLogin userLogin = new UserLogin();
 
@@ -103,46 +101,6 @@ class LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildForgotPasswordBtn() {
-    return Container(
-      alignment: Alignment.centerRight,
-      child: TextButton(
-        onPressed: () => print('Forgot Password Button Pressed'),
-        child: const Text(
-          'Esqueceu a senha?',
-          style: kLabelStyle,
-        ),
-      ),
-    );
-  }
-
-  // Widget _buildRememberMeCheckbox() {
-  //   return SizedBox(
-  //     height: 20.0,
-  //     child: Row(
-  //       children: <Widget>[
-  //         Theme(
-  //           data: ThemeData(unselectedWidgetColor: Colors.white),
-  //           child: Checkbox(
-  //             value: _rememberMe,
-  //             checkColor: Colors.green,
-  //             activeColor: Colors.white,
-  //             onChanged: (value) {
-  //               setState(() {
-  //                 _rememberMe = value!;
-  //               });
-  //             },
-  //           ),
-  //         ),
-  //         const Text(
-  //           'Lembrar de mim',
-  //           style: kLabelStyle,
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
-
   Widget _buildLoginBtn() {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25.0),
@@ -157,7 +115,6 @@ class LoginPageState extends State<LoginPage> {
               borderRadius: BorderRadius.circular(15.0),
             ),
           ),
-          //onPressed: () => Navigator.of(context).popAndPushNamed('/home'),
           onPressed: () async {
             userIsCorrect = await userLoginService.findByLogin(userLogin);
             userIsCorrect.forEach((element) {
@@ -186,10 +143,6 @@ class LoginPageState extends State<LoginPage> {
           ),
         ),
         SizedBox(height: 20.0),
-        // Text(
-        //   'Faça Login com',
-        //   style: kLabelStyle,
-        // ),
       ],
     );
   }
@@ -217,29 +170,6 @@ class LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
-  // Widget _buildSocialBtnRow() {
-  //   return Padding(
-  //     padding: const EdgeInsets.symmetric(vertical: 30.0),
-  //     child: Row(
-  //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //       children: <Widget>[
-  //         _buildSocialBtn(
-  //           () => print('Login with Facebook'),
-  //           const AssetImage(
-  //             'assets/logos/facebook.jpg',
-  //           ),
-  //         ),
-  //         _buildSocialBtn(
-  //           () => print('Login with Google'),
-  //           const AssetImage(
-  //             'assets/logos/google.jpg',
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
 
   Widget _buildSignupBtn() {
     return GestureDetector(
@@ -322,11 +252,8 @@ class LoginPageState extends State<LoginPage> {
                         height: 30.0,
                       ),
                       _buildPasswordTF(),
-                      _buildForgotPasswordBtn(),
-                      //_buildRememberMeCheckbox(),
                       _buildLoginBtn(),
                       _buildSignInWithText(),
-                      // _buildSocialBtnRow(),
                       _buildSignupBtn(),
                     ],
                   ),

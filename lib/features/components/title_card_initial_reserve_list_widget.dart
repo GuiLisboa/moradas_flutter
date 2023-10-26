@@ -52,7 +52,7 @@ class TitleCardInitialReserveListWidget extends StatelessWidget {
           ),
           Row(
             children: [
-              const Text('Data Abertura: ',
+              const Text('Data Agendamento: ',
                   style:
                       TextStyle(fontSize: 18, color: Color(colorBlueSimple))),
               (() {

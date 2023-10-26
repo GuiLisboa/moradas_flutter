@@ -12,7 +12,7 @@ class TitleCardReserveWidget extends StatelessWidget {
 
   TitleCardReserveWidget({
     super.key,
-    this.leftIcon = Icons.people_alt,
+    this.leftIcon = Icons.task_alt,
     this.iconColor = const Color(colorBlueSimple),
     required this.reserve,
   });
