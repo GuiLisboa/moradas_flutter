@@ -43,7 +43,6 @@ class DocumentService {
 
       if (response.statusCode == 200) {
         var documents = response.data as List;
-        debugPrint('Quantidade no service: ${documents.length}');
         return documents
             .map((document) => Document.fromJson(document))
             .toList();
